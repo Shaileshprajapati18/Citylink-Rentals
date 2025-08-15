@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "749612152176",
+    "project_id": "citylink-rentals",
+    "storage_bucket": "citylink-rentals.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749612152176:android:83a38f9bfac57b47218bb5",
+        "android_client_info": {
+          "package_name": "com.example.citylinkrentals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749612152176-uf03qs9a7g2ap09tr49mivhgaq8ac9if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.citylinkrentals",
+            "certificate_hash": "6bfe42b2e5bf6b34315bea12a347420a466e48b3"
+          }
+        },
+        {
+          "client_id": "749612152176-nkq7vv6bgt96siharvkh2a7bvof8492b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmwS-Z5ZxVmigqPC4Y24yB2NPA6yaQTF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749612152176-nkq7vv6bgt96siharvkh2a7bvof8492b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

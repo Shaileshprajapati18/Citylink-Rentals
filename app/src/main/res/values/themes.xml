@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CitylinkRentals" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/main_color</item>        <!-- Deep orange -->
+        <item name="colorPrimaryVariant">@color/main_color</item> <!-- Darker orange -->
+        <item name="colorOnPrimary">#FFFFFF</item>      <!-- Text/icons on primary -->
+
+        <item name="colorSecondary">#FFB74D</item>      <!-- Light orange -->
+        <item name="colorOnSecondary">#000000</item>    <!-- Text/icons on secondary -->
+
+        <!-- Optional for consistent widget styles -->
+        <item name="buttonStyle">@style/Widget.MaterialComponents.Button</item>
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
+    </style>
+
+    <style name="Theme.CitylinkRentals" parent="Base.Theme.CitylinkRentals" />
+</resources>
