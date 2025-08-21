@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="area_units">
+        <item>sq.ft.</item>
+        <item>sq.mt.</item>
+        <item>yards</item>
+        <item>acres</item>
+    </string-array>
+
+    <string-array name="flooring_types">
+        <item>Select</item>
+        <item>Marble</item>
+        <item>Vitrified</item>
+        <item>Wooden</item>
+        <item>Ceramic</item>
+        <item>Mosaic</item>
+        <item>Cement</item>
+        <item>Stone</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="length_units">
+        <item>Feet</item>
+        <item>Meters</item>
+        <item>Yards</item>
+    </string-array>
+</resources>

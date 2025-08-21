@@ -1,6 +1,54 @@
 <resources>
     <string name="app_name">Citylink Rentals</string>
     <string name="default_web_client_id">749612152176-nkq7vv6bgt96siharvkh2a7bvof8492b.apps.googleusercontent.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="property_image_desc">Property main image</string>
+    <string name="back_button_desc">Back button</string>
+    <string name="favorite_button_desc">Add to favorites</string>
+
+    <!-- Property Details -->
+    <string name="society_name_value">Green Valley</string>
+    <string name="apartment_type_value">Flat</string>
+
+    <string name="expected_price_label">Expected Price</string>
+    <string name="expected_price_value">₹50,00,000.0</string>
+    <string name="expected_deposit_label">Expected Deposit</string>
+    <string name="expected_deposit_value">₹2,00,000.0</string>
+
+    <string name="bhk_type_label">BHK Type</string>
+    <string name="bhk_type_value">2BHK</string>
+    <string name="category_label">Category</string>
+    <string name="category_value">room</string>
+
+    <string name="property_size_label">Property Size</string>
+    <string name="property_size_value">1200 sq.ft.</string>
+    <string name="property_age_label">Property Age</string>
+    <string name="property_age_value">5 years</string>
+
+    <string name="floor_label">Floor</string>
+    <string name="floor_value">3</string>
+    <string name="total_floor_label">Total Floors</string>
+    <string name="total_floor_value">10</string>
+
+    <string name="locality_label">Locality</string>
+    <string name="locality_value">Downtown</string>
+    <string name="street_area_landmark_label">Street/Area/Landmark</string>
+    <string name="street_area_landmark_value">Near Central Park</string>
+
+    <string name="parking_icon_desc">Parking icon</string>
+    <string name="parking_value">Parking: Available</string>
+    <string name="bathroom_icon_desc">Bathroom icon</string>
+    <string name="bathrooms_value">Bathrooms: 2</string>
+    <string name="balcony_icon_desc">Balcony icon</string>
+    <string name="balcony_value">Balcony: 1</string>
+
+    <string name="description_label">Description</string>
+    <string name="description_value">Spacious 2BHK. This well-maintained apartment is ideal for families, offering ample living space and a convenient location close to amenities and transport links. Enjoy peaceful surroundings with easy access to city life.</string>
+
+    <!-- Buttons -->
+    <string name="view_on_map_button_text">View on Map</string>
+    <string name="contact_owner_button_text">Contact Owner</string>
+
 </resources>
