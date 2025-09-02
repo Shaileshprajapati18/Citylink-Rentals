@@ -7,8 +7,6 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.citylinkrentals.MainActivity;
 import com.example.citylinkrentals.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,16 +28,20 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             FirebaseUser currentUser = mAuth.getCurrentUser();
             if (currentUser != null) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                // Check if user details are saved
+                boolean isUserDetailsSaved = prefs.getBoolean("isUserDetailsSaved_" + currentUser.getUid(), false);
+                Intent intent;
+                if (isUserDetailsSaved) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, UserDetailsActivity.class);
+                }
                 startActivity(intent);
-                finish();
             } else {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
+            finish();
         }, 2000);
-
     }
-
 }

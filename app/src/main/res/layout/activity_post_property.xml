@@ -11,16 +11,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/save_and_submit_button"
         android:orientation="vertical">
 
-        <!-- Header -->
         <RelativeLayout
             android:id="@+id/header_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:elevation="4dp"
-            android:paddingStart="6dp"
             android:paddingEnd="16dp">
 
             <ImageView
@@ -40,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/back_arrow"
                 android:text="Property Details"
                 android:textColor="#333333"
@@ -73,7 +72,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- Main Content Scrollable Area -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -86,105 +84,113 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Section: Property Sell/Rent -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="You're looking to? *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You're looking to? *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sell"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Rent"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Paying Guest"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/category_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="What kind of property? *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Residential"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Commercial"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
+                    android:layout_weight="1"
+                    android:text="Sell"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Select Property Type *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_weight="1"
+                    android:text="Rent"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Paying Guest"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What kind of property? *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/property_kind_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Residential"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Commercial"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Property Type *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/property_type_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,7 +214,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Independent House / Villa"
+                        android:text="Flat"
                         android:gravity="center"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
@@ -220,6 +226,69 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Room"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Shop"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="P.G"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Godown"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hidden_options_layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
                     android:layout_marginBottom="12dp">
                     <TextView
                         android:layout_width="0dp"
@@ -246,10 +315,12 @@
                         android:textSize="14sp" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/hidden_options_layout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
+                    android:visibility="gone"
+                    android:layout_marginBottom="12dp">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -266,477 +337,1042 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Serviced Apartment"
+                        android:text="Office"
                         android:gravity="center"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
                         android:textSize="14sp" />
-
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/hidden_options_layout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Farmhouse"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Independent House / Villa"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="#666666"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your contact details *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_border_bg"
-                    android:padding="12dp"
-                    android:layout_marginBottom="12dp">
-                    <TextView
-                        android:id="@+id/phone_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Phone number"
-                        android:textColor="#999999"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="4dp" />
-                    <EditText
-                        android:id="@+id/phone_number_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/phone_label"
-                        android:hint="Enter your phone number"
-                        android:background="@android:color/transparent"
-                        android:maxLength="13"
-                        android:textColor="#333333"
-                        android:textSize="16sp" />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_lock"
-                        android:tint="#CCCCCC"
-                        android:contentDescription="Locked" />
-                </RelativeLayout>
+            </LinearLayout>
 
                 <TextView
+                    android:id="@+id/btn_show_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Property Details *"
-                    android:textColor="#333333"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Where is your property located?"
-                    android:textColor="#666666"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Show More"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="14dp"
+                    android:textColor="@color/main_color"
+                    android:visibility="visible" />
 
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your contact details *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border_bg"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:id="@+id/phone_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    android:textColor="#999999"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp" />
                 <EditText
-                    android:id="@+id/input_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="City"
-                    android:inputType="text"
-                    android:padding="12dp"
-                    android:background="@drawable/edittext_border_bg"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp" />
-                <EditText
-                    android:id="@+id/input_locality"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Locality"
-                    android:inputType="text"
-                    android:padding="12dp"
-                    android:background="@drawable/edittext_border_bg"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp" />
-
-                <TextView
+                    android:id="@+id/phone_number_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No. of Bedrooms *"
+                    android:layout_below="@id/phone_label"
+                    android:hint="Enter your phone number"
+                    android:background="@android:color/transparent"
+                    android:maxLength="13"
+                    android:inputType="phone"
                     android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+                    android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_lock"
+                    android:tint="#CCCCCC"
+                    android:contentDescription="Locked" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Property Details *"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Where is your property located?"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border_bg"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/input_locality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Locality"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border_bg"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/input_apartment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apartment/Society name"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border_bg"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BHK Type *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
                 <LinearLayout
+                    android:id="@+id/bhk_type_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:layout_marginBottom="24dp">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="0 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2 BHK"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:minWidth="70dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="4 BHK"
+                        android:minWidth="70dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="5 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="6 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="7 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="8 BHK"
+                        android:minWidth="70dp"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="9 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="10 BHK"
+                        android:gravity="center"
+                        android:minWidth="70dp"
+                        android:padding="10dp"
+                        android:paddingHorizontal="2dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. of Bedrooms *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/bedrooms_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:gravity="center"
+                        android:minWidth="60dp"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="1"
                         android:gravity="center"
                         android:padding="10dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
+                        android:layout_marginEnd="8dp"
+                        android:minWidth="60dp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="2"
                         android:gravity="center"
                         android:padding="10dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp"
+                        android:minWidth="60dp"
                         android:layout_marginEnd="8dp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="3"
                         android:gravity="center"
+                        android:minWidth="60dp"
                         android:padding="10dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="4"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="5"
-                        android:gravity="center"
-                        android:padding="10dp"
+                        android:minWidth="60dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp" />
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="5+"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No. of Bathrooms *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="1"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="2"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="3"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="4+"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Balconies *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="0"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="1"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="2"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="3"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="3+"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Area Details *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="At least one area type is mandatory"
-                    android:textColor="#666666"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="12dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/edittext_border_bg"
-                    android:padding="4dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Carpet Area"
-                        android:inputType="numberDecimal"
-                        android:background="@android:color/transparent"
-                        android:padding="8dp"
-                        android:textSize="16sp"
-                        android:textColor="#333333" />
-                    <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/area_units"
-                        android:spinnerMode="dropdown"
-                        android:backgroundTint="#666666" />
-                </LinearLayout>
-
-
-                <!-- Furnishing Section -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Furnishing *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Unfurnished"
+                        android:text="5"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:minWidth="60dp"
+                        android:padding="10dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Semi-Furnished"
+                        android:text="6"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
+                        android:padding="10dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Furnished"
+                        android:text="7"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="8dp"
+                        android:padding="10dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:minWidth="60dp"
+                        android:layout_marginEnd="8dp"
                         android:background="@drawable/option_button_unselected_bg"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
+            </HorizontalScrollView>
 
-                <!-- Floor Details Section -->
-                <TextView
-                    android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. of Bathrooms *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Floor Details *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/bathrooms_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="24dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="3"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4"
+                            android:gravity="center"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:padding="10dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="6"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="7"
+                            android:gravity="center"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:padding="10dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="8"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="9"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="10"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:minWidth="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/option_button_unselected_bg"
+                            android:textColor="#666666"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balconies *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/balconies_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total no of floors and your floor details"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
                     android:textColor="#666666"
-                    android:textSize="12sp"
-                    android:layout_marginBottom="12dp" />
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hole *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/holes_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kitchen *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/kitchen_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Area Details *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="At least one area type is mandatory"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/area_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/edittext_border_bg"
+                android:padding="4dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
                 <EditText
-                    android:id="@+id/input_total_floors"
-                    android:layout_width="match_parent"
+                    android:id="@+id/input_carpet_area"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Total Floors"
-                    android:inputType="number"
-                    android:padding="12dp"
-                    android:background="@drawable/edittext_border_bg"
-                    android:textColor="#333333"
+                    android:layout_weight="1"
+                    android:hint="Carpet Area"
+                    android:inputType="numberDecimal"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
                     android:textSize="16sp"
-                    android:layout_marginBottom="24dp" />
-
-                <!-- Availability Status Section -->
-                <TextView
+                    android:textColor="#333333" />
+                <Spinner
+                    android:id="@+id/area_unit_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Availability Status"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Ready to move"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Under construction"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    android:entries="@array/area_units"
+                    android:spinnerMode="dropdown"
+                    android:backgroundTint="#666666" />
+            </LinearLayout>
 
-                <!-- Ownership Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Furnishing *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/furnishing_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Ownership *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_weight="1"
+                    android:text="Unfurnished"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Semi-Furnished"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Furnished"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Floor Details *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total no of floors and your floor details"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/input_total_floors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total Floors"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border_bg"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Availability Status"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/availability_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ready to move"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="@color/light_gray"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Under construction"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ownership *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/ownership_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -754,8 +1390,8 @@
                         android:paddingEnd="12dp"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp" />
                     <TextView
@@ -809,491 +1445,133 @@
                         android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginStart="8dp"/>
-
                 </LinearLayout>
+            </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price Details *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/input_expected_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Expected Price (month)"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border_bg"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parking *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/parking_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Price Details *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <EditText
-                    android:id="@+id/input_expected_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Expected Price (month)"
-                    android:inputType="numberDecimal"
-                    android:padding="12dp"
-                    android:background="@drawable/edittext_border_bg"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp" />
-
+                    android:layout_weight="1"
+                    android:text="Yes"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Parking *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Yes"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="No"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    android:layout_weight="1"
+                    android:text="No"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-                <!-- Image Upload Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power Back up *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/power_backup_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Images (1 to 10) *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:layout_marginBottom="24dp">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <!-- Placeholder for Image 1 -->
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="Upload Image" />
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/image_upload_placeholder"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/rounded_image_upload_bg"
-                            android:contentDescription="Upload Image" />
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-                <!-- Amenities Section -->
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Amenities *"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-<!--                <GridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:columnCount="2"-->
-<!--                    android:alignmentMode="alignBounds"-->
-<!--                    android:columnOrderPreserved="false"-->
-<!--                    android:useDefaultMargins="true"-->
-<!--                    android:layout_marginBottom="24dp">-->
-<!--                    &lt;!&ndash; Row 1 &ndash;&gt;-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Maintenance Staff"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Water Storage"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    &lt;!&ndash; Row 2 &ndash;&gt;-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Security / Fire Alarm"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Visitor Parking"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    &lt;!&ndash; Row 3 &ndash;&gt;-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Feng Shui / Vaastu Compliant"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Park"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    &lt;!&ndash; Row 4 &ndash;&gt;-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Security Personnel"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Lift(s)"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                </GridLayout>-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Overlooking *"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-
-<!--                <GridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:columnCount="2"-->
-<!--                    android:alignmentMode="alignBounds"-->
-<!--                    android:columnOrderPreserved="false"-->
-<!--                    android:useDefaultMargins="true"-->
-<!--                    android:layout_marginBottom="24dp">-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Pool"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Park/Garden"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Club"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Main Road"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Others"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Sea Facing"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                </GridLayout>-->
-
-                <!-- Other Features (Checkboxes) -->
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Other Features *"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-<!--                <CheckBox-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="In a gated society"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="14sp"-->
-<!--                    android:layout_marginBottom="8dp" />-->
-<!--                <CheckBox-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Corner Property"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="14sp"-->
-<!--                    android:layout_marginBottom="8dp" />-->
-<!--                <CheckBox-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Pet Friendly"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="14sp"-->
-<!--                    android:layout_marginBottom="8dp" />-->
-<!--                <CheckBox-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Wheelchair friendly"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="14sp"-->
-<!--                    android:layout_marginBottom="24dp" />-->
-
-                <!-- Power Back Up -->
+                    android:layout_weight="1"
+                    android:text="None"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Power Back up *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="None"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Partial"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="8dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Full"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_unselected_bg"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <!-- Property Facing -->
+                    android:layout_weight="1"
+                    android:text="Partial"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Property facing *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_weight="1"
+                    android:text="Full"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/option_button_unselected_bg"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Property facing *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <LinearLayout
+                android:id="@+id/property_facing_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1331,8 +1609,8 @@
                         android:gravity="center"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        android:background="@drawable/option_button_selected_bg"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/option_button_unselected_bg"
+                        android:textColor="#666666"
                         android:textSize="14sp"
                         android:layout_marginEnd="8dp" />
                     <TextView
@@ -1351,7 +1629,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginBottom="12dp">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -1400,233 +1678,345 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                 </LinearLayout>
+            </LinearLayout>
 
-                <!-- Type of Flooring -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type of flooring *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <Spinner
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type of flooring *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <Spinner
+                android:id="@+id/flooring_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/flooring_types"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/spinner_border_bg"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+            <EditText
+                android:id="@+id/input_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/edittext_border_bg"
+                android:gravity="top"
+                android:hint="Add property description"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:padding="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Images (1 to 10) *"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/flooring_types"
-                    android:spinnerMode="dropdown"
-                    android:background="@drawable/spinner_border_bg"
-                    android:padding="12dp"
-                    android:layout_marginBottom="24dp" />
+                    android:scrollbars="none">
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Location Advantages *"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Highlight the nearby landmarks*"-->
-<!--                    android:textColor="#666666"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-<!--                <GridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:columnCount="2"-->
-<!--                    android:alignmentMode="alignBounds"-->
-<!--                    android:columnOrderPreserved="false"-->
-<!--                    android:useDefaultMargins="true"-->
-<!--                    android:layout_marginBottom="12dp">-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Close to Metro Station"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Close to School"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Close to Hospital"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Close to Market"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Close to Railway Station"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                </GridLayout>-->
-                <!-- Description Input -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description *"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-                <EditText
-                    android:id="@+id/input_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Add property description"
-                    android:inputType="textMultiLine"
-                    android:lines="4"
-                    android:gravity="top"
-                    android:padding="12dp"
-                    android:background="@drawable/edittext_border_bg"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="24dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="#E4FBC6B6"
+                            app:cardCornerRadius="10dp">
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Other Amenities *"-->
-<!--                    android:textColor="#333333"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:layout_marginBottom="12dp" />-->
-<!--                <GridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:columnCount="2"-->
-<!--                    android:alignmentMode="alignBounds"-->
-<!--                    android:columnOrderPreserved="false"-->
-<!--                    android:useDefaultMargins="true"-->
-<!--                    android:layout_marginBottom="24dp">-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ AC"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Club"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Gas"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Lift"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="+ Park"-->
-<!--                        android:background="@drawable/amenity_add_button_bg"-->
-<!--                        android:textColor="#666666"-->
-<!--                        android:textSize="14sp"-->
-<!--                        android:paddingStart="12dp"-->
-<!--                        android:paddingEnd="12dp"-->
-<!--                        android:paddingTop="8dp"-->
-<!--                        android:paddingBottom="8dp"-->
-<!--                        android:layout_columnWeight="1"-->
-<!--                        android:gravity="center" />-->
-<!--                </GridLayout>-->
+                            <ImageView
+                                android:id="@+id/btnSelectImages"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:src="@drawable/ic_image_add"
+                                app:tint="@color/white"
+                                android:layout_gravity="center" />
 
-                <Button
-                    android:id="@+id/save_and_submit_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Save and Submit"
-                    android:textColor="@android:color/white"
-                    android:paddingTop="14dp"
-                    android:backgroundTint="@color/main_color"
-                    android:paddingBottom="14dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="16dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tap to upload image"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:padding="10dp"
+                                android:layout_gravity="bottom|center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_1"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/close_icon_1"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_2"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/close_icon_2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_3"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/close_icon_3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_4"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/close_icon_4"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_5"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/close_icon_5"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_6"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop"
+                                />
+
+                            <ImageView
+                                android:id="@+id/close_icon_6"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_7"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop"
+                                />
+
+                            <ImageView
+                                android:id="@+id/close_icon_7"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_8"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop"
+                                />
+
+                            <ImageView
+                                android:id="@+id/close_icon_8"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_9"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop"
+                                />
+
+                            <ImageView
+                                android:id="@+id/close_icon_9"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:id="@+id/image_preview_10"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone"
+                                android:scaleType="centerCrop"
+                                />
+
+                            <ImageView
+                                android:id="@+id/close_icon_10"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="top|end"
+                                android:padding="2dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_close"
+                                android:background="@drawable/circle_background" />
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -1646,6 +2036,22 @@
                     android:gravity="center_horizontal" />
 
             </LinearLayout>
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/save_and_submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save and Submit"
+        android:textColor="@android:color/white"
+        android:paddingTop="14dp"
+        android:backgroundTint="@color/main_color"
+        android:paddingBottom="14dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

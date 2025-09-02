@@ -3,16 +3,13 @@ package com.example.citylinkrentals.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.citylinkrentals.MainActivity;
 import com.example.citylinkrentals.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthCredential;

@@ -40,7 +40,7 @@
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Citylink Rentals"
+                android:text="Quick Rentals"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:paddingStart="10dp"
@@ -77,19 +77,31 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"/>
 
-                <EditText
-                    android:id="@+id/rentEditText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_round_grey"
-                    android:layout_marginTop="8dp"
                     android:backgroundTint="#94FBBCA8"
-                    android:textSize="16sp"
-                    android:padding="7dp"
-                    android:drawableEnd="@drawable/keyboard_arrow_down_24px"
-                    android:textColor="@color/black"
-                    android:textColorHint="#E49E89"
-                    android:hint="Rent"/>
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/propertyTypeSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:entries="@array/property_type"
+                        android:popupBackground="@color/white"
+                        android:spinnerMode="dropdown"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/keyboard_arrow_down_24px"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/cityEditText"
@@ -100,13 +112,16 @@
                     android:backgroundTint="#94FBBCA8"
                     android:textColorHint="#E49E89"
                     android:textColor="@color/black"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="7dp"
+                    android:paddingStart="13dp"
                     android:padding="7dp"
                     android:textSize="16sp"
                     android:drawableEnd="@drawable/location_on_24px"
                     android:hint="Enter city"/>
 
                 <Button
-                    android:id="@+id/searchButton"
+                    android:id="@+id/btnSearchProperty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -285,6 +300,7 @@
                                 android:layout_marginTop="2dp" />
 
                             <Button
+                                android:id="@+id/btnPostProperty"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Post FREE Property Ad"

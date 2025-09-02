@@ -9,7 +9,6 @@
     </string-array>
 
     <string-array name="flooring_types">
-        <item>Select</item>
         <item>Marble</item>
         <item>Vitrified</item>
         <item>Wooden</item>
@@ -24,5 +23,11 @@
         <item>Feet</item>
         <item>Meters</item>
         <item>Yards</item>
+    </string-array>
+
+    <string-array name="property_type">
+        <item>Rent</item>
+        <item>Sell</item>
+        <item>Paying guest</item>
     </string-array>
 </resources>

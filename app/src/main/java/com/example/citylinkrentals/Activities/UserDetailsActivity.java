@@ -1,9 +1,9 @@
 package com.example.citylinkrentals.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,22 +14,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.citylinkrentals.MainActivity;
+import com.example.citylinkrentals.model.User;
 import com.example.citylinkrentals.R;
+import com.example.citylinkrentals.network.ApiService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserDetailsActivity extends AppCompatActivity {
 
     private EditText usernameBox, emailBox, phoneBox;
     private Button continueBtn;
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private ApiService apiService;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,18 @@ public class UserDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_details);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
         usernameBox = findViewById(R.id.usernameBox);
         emailBox = findViewById(R.id.emailBox);
         phoneBox = findViewById(R.id.phoneBox);
         continueBtn = findViewById(R.id.continueBtn);
+
+        prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.153.1:8082/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiService = retrofit.create(ApiService.class);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
 
@@ -54,14 +61,19 @@ public class UserDetailsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null && firebaseUser.getPhoneNumber() != null) {
+            phoneBox.setText(firebaseUser.getPhoneNumber());
+        }
     }
 
     private void saveUserDetails() {
-
         String username = usernameBox.getText().toString().trim();
         String email = emailBox.getText().toString().trim();
         String phoneNumber = phoneBox.getText().toString().trim();
 
+        // Input validation
         if (username.isEmpty()) {
             usernameBox.setError("Username is required");
             usernameBox.requestFocus();
@@ -95,29 +107,34 @@ public class UserDetailsActivity extends AppCompatActivity {
             return;
         }
 
-        // Check if user is authenticated
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
-            Toast.makeText(this, "User not authenticated. Please sign in again.", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(UserDetailsActivity.this, LoginActivity.class));
-            finish();
-            return;
-        }
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String firebaseUid = firebaseUser != null ? firebaseUser.getUid() : "null";
 
-        String userId = user.getUid();
-        Map<String, Object> userDetails = new HashMap<>();
-        userDetails.put("username", username);
-        userDetails.put("email", email);
-        userDetails.put("phoneNumber", phoneNumber);
+        User user = new User(firebaseUid, username, email, phoneNumber);
 
-        mDatabase.child("users").child(userId).setValue(userDetails)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(UserDetailsActivity.this, "User details saved successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(UserDetailsActivity.this, MainActivity.class));
+        Call<User> call = apiService.postUser(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(UserDetailsActivity.this, "User details saved successfully!", Toast.LENGTH_SHORT).show();
+                    // Mark user details as saved in SharedPreferences
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("isUserDetailsSaved_" + firebaseUid, true);
+                    editor.apply();
+
+                    Intent intent = new Intent(UserDetailsActivity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(UserDetailsActivity.this, "Failed to save user details: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                });
+                } else {
+                    Toast.makeText(UserDetailsActivity.this, "Failed to save user details: " + response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(UserDetailsActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.citylinkrentals.MainActivity;
 import com.example.citylinkrentals.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,11 +23,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button continueBtn, btnGoogleSignIn;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    private DatabaseReference mDatabase;
     private String verificationId;
     private static final int RC_SIGN_IN = 9001;
     private static final int MAX_RETRIES = 3;
@@ -49,29 +42,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Initialize UI elements
         phoneBox = findViewById(R.id.phoneBox);
         continueBtn = findViewById(R.id.continueBtn);
         btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
 
-        // Set status bar color
         getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
 
-        // Configure Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Google Sign-In click listener
         btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
 
-        // Phone authentication continue button
         continueBtn.setOnClickListener(v -> {
             String phoneNumber = phoneBox.getText().toString().trim();
             if (phoneNumber.isEmpty() || phoneNumber.length() < 10) {
@@ -119,13 +105,13 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Google Sign-In Successful", Toast.LENGTH_SHORT).show();
-                        checkUserDetails();
+                        navigateToUserDetails();
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                             FirebaseAuthUserCollisionException exception = (FirebaseAuthUserCollisionException) task.getException();
                             AuthCredential existingCredential = exception.getUpdatedCredential();
                             mAuth.getCurrentUser().linkWithCredential(existingCredential)
-                                    .addOnSuccessListener(authResult -> checkUserDetails())
+                                    .addOnSuccessListener(authResult -> navigateToUserDetails())
                                     .addOnFailureListener(e -> Toast.makeText(this, "Failed to link accounts: " + e.getMessage(), Toast.LENGTH_LONG).show());
                         } else {
                             Log.e(TAG, "Firebase Google Auth failed: " + task.getException());
@@ -133,6 +119,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void navigateToUserDetails() {
+        Intent intent = new Intent(LoginActivity.this, UserDetailsActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void sendVerificationCode(String phoneNumber, int remainingAttempts) {
@@ -188,42 +180,18 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Phone Authentication Successful", Toast.LENGTH_SHORT).show();
-                        checkUserDetails();
+                        navigateToUserDetails();
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                             FirebaseAuthUserCollisionException exception = (FirebaseAuthUserCollisionException) task.getException();
                             AuthCredential existingCredential = exception.getUpdatedCredential();
                             mAuth.getCurrentUser().linkWithCredential(existingCredential)
-                                    .addOnSuccessListener(authResult -> checkUserDetails())
+                                    .addOnSuccessListener(authResult -> navigateToUserDetails())
                                     .addOnFailureListener(e -> Toast.makeText(this, "Failed to link accounts: " + e.getMessage(), Toast.LENGTH_LONG).show());
                         } else {
                             Toast.makeText(LoginActivity.this, "Phone Authentication Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
-
-    private void checkUserDetails() {
-        String userId = mAuth.getCurrentUser().getUid();
-        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    // User details exist, go to MainActivity
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                } else {
-                    // User details don't exist, go to UserDetailsActivity
-                    startActivity(new Intent(LoginActivity.this, UserDetailsActivity.class));
-                    finish();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, "Database error: " + error.getMessage());
-                Toast.makeText(LoginActivity.this, "Error checking user details: " + error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }

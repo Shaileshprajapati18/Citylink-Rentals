@@ -1,11 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.CitylinkRentals" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/white</item>        <!-- Deep orange -->
-        <item name="colorPrimaryVariant">@color/white</item> <!-- Darker orange -->
-        <item name="colorOnPrimary">#FFFFFF</item>      <!-- Text/icons on primary -->
-        <item name="colorSecondary">#FFB74D</item>      <!-- Light orange -->
-        <item name="colorOnSecondary">#000000</item>    <!-- Text/icons on secondary -->
+        <item name="colorPrimary">@color/main_color</item>
+        <item name="colorPrimaryVariant">@color/main_color</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#FFB74D</item>
+        <item name="colorOnSecondary">#000000</item>
 
         <item name="android:windowTranslucentStatus">true</item>
         <item name="buttonStyle">@style/Widget.MaterialComponents.Button</item>

@@ -1,14 +1,10 @@
-package com.example.citylinkrentals;
+package com.example.citylinkrentals.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,6 +16,7 @@ import com.example.citylinkrentals.Fragments.AiChatFragment;
 import com.example.citylinkrentals.Fragments.HomeFragment;
 import com.example.citylinkrentals.Fragments.ProfileFragment;
 import com.example.citylinkrentals.Fragments.MyListingsFragment;
+import com.example.citylinkrentals.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

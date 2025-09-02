@@ -29,8 +29,8 @@
                 android:id="@+id/property_main_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:src="@drawable/ic_property_placeholder"
+                android:background="@color/black"
                 android:contentDescription="Property Main Image"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
@@ -121,7 +121,7 @@
                         android:background="@drawable/rounded_icon_bg"
                         android:elevation="3dp"
                         app:tint="@color/white"
-                        android:backgroundTint="#4DFFFFFF"
+                        android:backgroundTint="@color/black"
                         android:padding="6dp"
                         android:layout_marginEnd="10dp"
                         android:contentDescription="Previous Image" />
@@ -149,7 +149,7 @@
                         android:src="@drawable/arrow_forward_ios_24px"
                         android:background="@drawable/rounded_icon_bg"
                         app:tint="@color/white"
-                        android:backgroundTint="#4DFFFFFF"
+                        android:backgroundTint="@color/black"
                         android:padding="6dp"
                         android:layout_marginEnd="10dp"
                         android:contentDescription="Next Image" />
@@ -166,6 +166,23 @@
                 android:padding="16dp"
                 android:gravity="center_vertical"
                 app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/seen_badge_bg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Rent"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:maxWidth="120dp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -192,6 +209,7 @@
                         android:layout_marginEnd="4dp"/>
 
                     <TextView
+                        android:id="@+id/tv_image_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1/8"
@@ -270,6 +288,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_carpet_area"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -290,6 +309,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_property"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -310,6 +330,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_property_type"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -326,10 +347,53 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="BHK type"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_bhk_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1 BHK"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Society/Apartment name"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_society_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="N/A"
+                        android:textColor="#333333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Floor number"
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_floor_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -350,6 +414,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_flooring"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -370,6 +435,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_status"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -390,6 +456,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_ownership"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -410,6 +477,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_parking"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -430,6 +498,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_power_backup"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -450,6 +519,7 @@
                         android:textColor="#666666"
                         android:textSize="14sp" />
                     <TextView
+                        android:id="@+id/tv_property_facing"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -478,11 +548,12 @@
                         android:layout_height="48dp"
                         android:src="@drawable/bathtub_24px"
                         app:tint="@color/main_color"
-                        android:padding="5dp"
+                        android:padding="7dp"
                         android:background="@drawable/circle_placeholder_bg_1"
                         android:layout_marginBottom="4dp" />
 
                     <TextView
+                        android:id="@+id/tv_bathrooms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3 Bathrooms"
@@ -505,11 +576,12 @@
                         android:layout_height="48dp"
                         android:src="@drawable/bed_24px"
                         app:tint="#33A8DC"
-                        android:padding="5dp"
+                        android:padding="7dp"
                         android:background="@drawable/circle_placeholder_bg_2"
                         android:layout_marginBottom="4dp" />
 
                     <TextView
+                        android:id="@+id/tv_bedrooms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4 Bedrooms"
@@ -532,13 +604,78 @@
                         android:layout_height="48dp"
                         android:src="@drawable/balcony_24px"
                         app:tint="#2EE60D"
-                        android:padding="5dp"
+                        android:padding="7dp"
                         android:background="@drawable/circle_placeholder_bg_3"
                         android:layout_marginBottom="4dp" />
                     <TextView
+                        android:id="@+id/tv_balconies"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3 Balconies"
+                        android:textColor="#333333"
+                        android:textSize="12sp"
+                        android:gravity="center_horizontal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="8dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/hole"
+                        app:tint="#FF9800"
+                        android:backgroundTint="#F8EAC0"
+                        android:padding="7dp"
+                        android:background="@drawable/circle_placeholder_bg_2"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tv_hole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 Hole"
+                        android:textColor="#333333"
+                        android:textSize="12sp"
+                        android:gravity="center_horizontal"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="8dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/kitchen"
+                        app:tint="#E021F6"
+                        android:padding="7dp"
+                        android:background="@drawable/circle_placeholder_bg_3"
+                        android:backgroundTint="#F8C5F3"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:id="@+id/tv_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 Kitchen"
                         android:textColor="#333333"
                         android:textSize="12sp"
                         android:gravity="center_horizontal"/>
@@ -554,13 +691,16 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address: CR Park, Delhi"
                 android:textColor="#666666"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
             <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="This beautiful 3 bhk builder floor for rent in cr park in south delhi is now available. The rent of this property is 70,000 ...read more"
@@ -599,17 +739,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_dealer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="John Doe"
                         android:textColor="#333333"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -620,22 +757,15 @@
                             android:paddingStart="6dp"
                             android:paddingEnd="6dp"
                             android:paddingTop="2dp"
+                            android:layout_marginTop="5dp"
                             android:paddingBottom="2dp"
                             android:layout_marginEnd="6dp" />
-                    </LinearLayout>
                 </LinearLayout>
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/arrow_forward_24px"
-                    app:tint="#666666"
-                    android:contentDescription="Go to Dealer Profile" />
             </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom contact bar -->
     <LinearLayout
         android:id="@+id/bottom_contact_bar"
         android:layout_width="match_parent"
@@ -661,8 +791,6 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:padding="12dp"
-            android:drawableLeft="@drawable/ic_whatsapp"
-            android:drawableTint="@color/white"
             android:drawablePadding="8dp"
             android:gravity="center"
             android:layout_marginEnd="8dp" />
@@ -687,12 +815,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:background="@drawable/blue_button_bg"
+            android:background="@drawable/rounded_blue_call_button_bg"
             android:padding="12dp"
             android:textSize="16sp"
-            android:drawableStart="@drawable/ic_call"
             android:textStyle="bold"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            app:drawableStartCompat="@drawable/ic_call" />
 
     </LinearLayout>
 
