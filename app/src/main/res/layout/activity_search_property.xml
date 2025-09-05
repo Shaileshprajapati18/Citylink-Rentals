@@ -1,168 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="8dp"
     android:id="@+id/main"
-    android:background="@android:color/white">
+    android:background="#F8F9FA">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        app:elevation="4dp">
 
-    <ImageView
-        android:id="@+id/back_arrow"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="@drawable/bg_round"
-        android:backgroundTint="@color/white"
-        android:elevation="4dp"
-        android:src="@drawable/arrow_back_24px"
-        android:padding="7dp"
-        android:layout_margin="5dp"
-        app:tint="@color/black"
-        android:contentDescription="@string/back_button_desc"/>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingVertical="8dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search location"
-        android:drawableStart="@drawable/ic_search"
-        android:drawableTint="#666666"
-        android:iconifiedByDefault="false"
-        android:padding="7dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="15dp"
-        android:maxLines="1"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:drawablePadding="10dp"
-        android:background="@drawable/search_bar_background" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-    </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/back_arrow"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="0dp"
+                    app:icon="@drawable/arrow_back_24px"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSize="24dp"
+                    app:iconTint="#424242"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Back button"
+                    android:layout_marginEnd="8dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/search_bar_background"
+                    android:layout_marginEnd="5dp"
+                    android:padding="12dp">
 
-        <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_search"
+                        app:tint="#757575"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp" />
 
+                    <EditText
+                        android:id="@+id/search_bar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Search location"
+                        android:textSize="16sp"
+                        android:textColor="#424242"
+                        android:textColorHint="#757575"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="sans-serif" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- Filter Chips Section -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:clipToPadding="false"
-            android:paddingEnd="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@color/white">
 
-            <TextView
-                android:id="@+id/tv_all"
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="All"
-                android:textColor="@android:color/white"
-                android:background="@drawable/filter_button_selected_bg"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/tv_rent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room"
-                android:textColor="#666666"
-                android:background="@drawable/filter_button_unselected_bg"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:checkedChip="@id/chip_all">
 
-            <TextView
-                android:id="@+id/tv_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shop"
-                android:textColor="#666666"
-                android:background="@drawable/filter_button_unselected_bg"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_all"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        android:textColor="@color/chip_text_color"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/chip_background_color"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="@color/chip_stroke_color"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_marginEnd="8dp" />
 
-            <TextView
-                android:id="@+id/tv_commercial_rent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PG"
-                android:textColor="#666666"
-                android:background="@drawable/filter_button_unselected_bg"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_room"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Room"
+                        android:textColor="@color/chip_text_color"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/chip_background_color"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="@color/chip_stroke_color"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_marginEnd="8dp" />
 
-            <TextView
-                android:id="@+id/tv_commercial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Godown"
-                android:textColor="#666666"
-                android:background="@drawable/filter_button_unselected_bg"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_shop"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shop"
+                        android:textColor="@color/chip_text_color"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/chip_background_color"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="@color/chip_stroke_color"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_pg"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PG"
+                        android:textColor="@color/chip_text_color"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/chip_background_color"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="@color/chip_stroke_color"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_godown"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Godown"
+                        android:textColor="@color/chip_text_color"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:chipBackgroundColor="@color/chip_background_color"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeColor="@color/chip_stroke_color"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_marginEnd="8dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
-    </HorizontalScrollView>
 
-    </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listView"
+    <!-- Main Content with RecyclerView -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Results Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="16dp"
+                android:background="@color/white"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/results_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="234 properties found"
+                    android:textColor="#424242"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Sort/Filter Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sort_filter_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Sort"
+                    android:textSize="14sp"
+                    android:textAllCaps="false"
+                    android:fontFamily="sans-serif-medium"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:icon="@drawable/ic_sort"
+                    app:iconSize="18dp"
+                    app:iconTint="#757575"
+                    android:textColor="#757575"
+                    app:cornerRadius="12dp"
+                    android:paddingHorizontal="16dp" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView Container -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="16dp"
+                android:clipToPadding="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

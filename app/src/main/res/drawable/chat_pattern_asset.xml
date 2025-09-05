@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="30dp"
+    android:viewportWidth="30"
+    android:viewportHeight="30">
+
+    <!-- Hexagonal dots pattern -->
+    <group>
+        <!-- First row -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M5,5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M15,5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M25,5m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+        <!-- Second row (offset) -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M10,12m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M20,12m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+        <!-- Third row -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M5,19m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M15,19m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M25,19m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M10,26m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M20,26m-0.5,0a0.5,0.5 0,1 1,1 0a0.5,0.5 0,1 1,-1 0"/>
+    </group>
+</vector>

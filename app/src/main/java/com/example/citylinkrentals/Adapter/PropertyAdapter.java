@@ -19,6 +19,7 @@ import com.example.citylinkrentals.Activities.PropertyDetailsActivity;
 import com.example.citylinkrentals.R;
 import com.example.citylinkrentals.model.Property;
 import com.example.citylinkrentals.model.TimeUtil;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +59,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     class PropertyViewHolder extends RecyclerView.ViewHolder {
         ImageView propertyImage;
-        TextView locationText, furnishingText, priceText, timeText, viewNumberButton, category, statusText;
-        ImageButton whatsappButton, callButton;
+        TextView locationText, furnishingText, priceText, timeText, category, statusText;
+        MaterialButton whatsappButton, callButton,viewNumberButton;
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,7 +84,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         }
 
         public void bind(Property property) {
-            // Load image with localhost replacement
+
             String imageUrl = null;
             if (property.getImagePaths() != null && !property.getImagePaths().isEmpty()) {
                 imageUrl = property.getImagePaths().get(0).replace("localhost", "192.168.153.1");
@@ -97,7 +98,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                         .into(propertyImage);
             }
 
-            // Set text fields with null checks
             locationText.setText((property.getLocality() != null && property.getCity() != null) ?
                     property.getLocality() + ", " + property.getCity() : "N/A");
             furnishingText.setText(property.getFurnishing() != null ? property.getFurnishing() : "N/A");
@@ -108,7 +108,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
             TimeUtil.setRelativeTime(timeText, property);
 
-            // Contact buttons
             viewNumberButton.setOnClickListener(v -> {
                 String phone = property.getPhoneNumber();
                 if (phone != null && !phone.isEmpty()) {

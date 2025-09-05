@@ -143,4 +143,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity", "No visible fragment found");
         return null;
     }
+    public void hideBottomNavigation() {
+        bottomNavigationView.animate()
+                .translationY(bottomNavigationView.getHeight())
+                .alpha(0f)
+                .setDuration(200)
+                .start();
+    }
+
+    public void showBottomNavigation() {
+        bottomNavigationView.animate()
+                .translationY(0)
+                .alpha(1f)
+                .setDuration(200)
+                .start();
+    }
 }

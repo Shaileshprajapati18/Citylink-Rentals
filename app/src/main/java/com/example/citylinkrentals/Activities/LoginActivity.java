@@ -16,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +30,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText phoneBox;
-    private Button continueBtn, btnGoogleSignIn;
+    private TextInputEditText phoneBox;
+    private MaterialButton continueBtn, btnGoogleSignIn;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private String verificationId;
@@ -44,9 +46,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        phoneBox = findViewById(R.id.phoneBox);
+        phoneBox = findViewById(R.id.phoneEditText);
         continueBtn = findViewById(R.id.continueBtn);
-        btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
+        btnGoogleSignIn = findViewById(R.id.googleSignInBtn);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.main_color));
 

@@ -5,4 +5,48 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#FF5722</color>
     <color name="light_gray">#898989</color>
+    <color name="chip_background_color">#F5F5F5</color>
+    <color name="chip_text_color">#424242</color>
+    <color name="chip_stroke_color">#E0E0E0</color>
+
+        <color name="colorPrimary">#4285F4</color>
+        <color name="colorPrimaryDark">#2962FF</color>
+        <color name="colorAccent">#FF4081</color>
+
+        <!-- Text Colors -->
+        <color name="textPrimary">#1A1A1A</color>
+        <color name="textSecondary">#757575</color>
+        <color name="textTertiary">#9E9E9E</color>
+        <color name="textHint">#BDBDBD</color>
+
+        <!-- Background Colors -->
+        <color name="background">#F8F9FA</color>
+        <color name="cardBackground">#FFFFFF</color>
+        <color name="dividerColor">#F5F5F5</color>
+
+        <!-- Status Colors -->
+        <color name="success">#4CAF50</color>
+        <color name="warning">#FF9800</color>
+        <color name="error">#F44336</color>
+        <color name="info">#2196F3</color>
+
+        <!-- Switch Colors -->
+        <color name="switchThumbChecked">#4285F4</color>
+        <color name="switchThumbNormal">#BDBDBD</color>
+        <color name="switchTrackChecked">#4285F4</color>
+        <color name="switchTrackNormal">#E0E0E0</color>
+
+    <color name="chat_background">#F5F7FA</color>
+    <color name="message_received">#FFFFFF</color>
+    <color name="message_sent">#FF5722</color>
+    <color name="message_sent_text">#FFFFFF</color>
+    <color name="message_sent_time">#B0E0FC</color>
+
+    <color name="background_primary">#F5F7FA</color>
+    <color name="primary_color">#6366F1</color>
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="divider_color">#E5E7EB</color>
+    <color name="stroke_color">#D1D5DB</color>
+
 </resources>

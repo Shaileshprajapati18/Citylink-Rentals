@@ -1,7 +1,6 @@
 package com.example.citylinkrentals.network;
 
-import android.util.Property;
-
+import com.example.citylinkrentals.model.MessageDTO;
 import com.example.citylinkrentals.model.PropertyListResponse;
 import com.example.citylinkrentals.model.ResponseDTO;
 import com.example.citylinkrentals.model.User;
@@ -36,4 +35,10 @@ public interface ApiService {
     Call<ResponseDTO> getAllPropertiesByCityAndCategory
             (@Query("category") String category,
             @Query("city") String city);
+
+    @POST("/api/chat")
+    Call<MessageDTO> sendMessage(@Query("userUid") String userUid, @Body String message);
+
+    @GET("/api/chat")
+    Call<List<MessageDTO>> getMessages(@Query("userUid") String userUid);
 }

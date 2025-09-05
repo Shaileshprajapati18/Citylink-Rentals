@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/bg_chat_screen">
+
+<com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appBarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    app:elevation="0dp">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/chatToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingHorizontal="8dp"
+        android:background="@color/chat_background"
+        app:contentInsetStartWithNavigation="0dp"
+        app:titleMarginStart="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivContactProfilePic"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/light_gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvContactName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rental Assistant"
+                    android:textColor="#212121"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ask to Rental Assistant"
+                    android:textColor="#212121"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+</com.google.android.material.appbar.AppBarLayout>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rvMessages"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.AiChatFragment">
+    android:paddingHorizontal="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="80dp"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<LinearLayout
+    android:id="@+id/bottomInputLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp"
+    android:background="@color/white"
+    android:elevation="4dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_message_input"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/btnAttach"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_attach"
+            android:contentDescription="Attach file"
+            app:tint="@color/main_color" />
+
+        <EditText
+            android:id="@+id/etMessageInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"
+            android:hint="Type a message"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="4"
+            android:scrollbars="none"
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:textColorHint="#9E9E9E" />
+
+        <ImageView
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/send_button_bg"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_send"
+            app:tint="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

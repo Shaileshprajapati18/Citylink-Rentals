@@ -23,6 +23,7 @@ import com.example.citylinkrentals.model.Property;
 import com.example.citylinkrentals.model.ResponseDTO;
 import com.example.citylinkrentals.network.ApiService;
 import com.example.citylinkrentals.network.RetrofitClient;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class SearchPropertyActivity extends AppCompatActivity {
     private PropertyAdapter propertyAdapter;
     private List<Property> propertyList = new ArrayList<>();
     private EditText searchBar;
-    ImageView back_icon;
+    MaterialButton back_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

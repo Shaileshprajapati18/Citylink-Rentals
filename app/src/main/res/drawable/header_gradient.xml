@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/header_gradient.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:type="linear"
+        android:angle="135"
+        android:startColor="#6366F1"
+        android:centerColor="#8B5CF6"
+        android:endColor="#EC4899"
+        android:centerX="0.7"
+        android:centerY="0.3" />
+    <corners android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp" />
+</shape>
