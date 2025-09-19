@@ -3,6 +3,7 @@ package com.example.citylinkrentals.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class PropertyListRequest implements Serializable {
 
@@ -83,6 +84,9 @@ public class PropertyListRequest implements Serializable {
 
     @SerializedName("createdAt")
     private String createAt;
+
+    private List<String> imagesToRemove;
+
 
     public String getFirebaseUid() {
         return firebaseUid;
@@ -290,5 +294,13 @@ public class PropertyListRequest implements Serializable {
 
     public void setKitchen(Integer kitchen) {
         this.kitchen = kitchen;
+    }
+
+    public List<String> getImagesToRemove() {
+        return imagesToRemove;
+    }
+
+    public void setImagesToRemove(List<String> imagesToRemove) {
+        this.imagesToRemove = imagesToRemove;
     }
 }

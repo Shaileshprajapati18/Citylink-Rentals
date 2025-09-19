@@ -5,55 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    android:background="#F8F9FA">
-
-    <!-- Modern App Bar -->
+    android:background="@color/main_background_color">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
-
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:paddingHorizontal="20dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
-
                 <ImageView
                     android:id="@+id/menu_item"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/menu_icon"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="2dp"
-                    app:tint="#424242"
                     android:contentDescription="Menu" />
-
                 <TextView
                     android:id="@+id/titleText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Quick Rentals"
+                    android:text="@string/app_name"
                     android:textSize="22sp"
                     android:textColor="#1A1A1A"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="bold"
                     android:layout_marginStart="16dp" />
-
+                <ImageView
+                    android:id="@+id/notification_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/notifications_24px"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="2dp"
+                    app:tint="#757575"
+                    android:layout_marginEnd="8dp" />
             </LinearLayout>
-
         </com.google.android.material.appbar.MaterialToolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,13 +58,13 @@
         android:scrollbars="none"
         android:id="@+id/nestedScrollView"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="24dp">
 
+            <!-- Search Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,13 +73,11 @@
                 app:cardElevation="8dp"
                 app:strokeColor="@color/chip_stroke_color"
                 app:cardBackgroundColor="@color/white">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="24dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,7 +88,6 @@
                         android:fontFamily="sans-serif-medium"
                         android:layout_marginBottom="20dp" />
 
-                    <!-- Property Type Selection -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -105,7 +99,6 @@
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:startIconDrawable="@drawable/home_icon"
                         app:startIconTint="#757575">
-
                         <AutoCompleteTextView
                             android:id="@+id/propertyTypeSpinner"
                             android:layout_width="match_parent"
@@ -116,10 +109,8 @@
                             android:fontFamily="sans-serif"
                             android:inputType="none"
                             android:focusable="false" />
-
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- City Input -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -131,7 +122,6 @@
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:startIconDrawable="@drawable/location_on_24px"
                         app:startIconTint="#757575">
-
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/cityEditText"
                             android:layout_width="match_parent"
@@ -142,10 +132,8 @@
                             android:fontFamily="sans-serif"
                             android:inputType="text"
                             android:maxLines="1" />
-
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Search Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSearchProperty"
                         android:layout_width="match_parent"
@@ -159,19 +147,15 @@
                         app:icon="@drawable/ic_search"
                         app:iconSize="20dp"
                         app:iconTint="@color/white" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Property Categories Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
                 android:layout_marginBottom="24dp">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -182,13 +166,11 @@
                     android:fontFamily="sans-serif-medium"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Categories Grid -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="4">
-
                     <!-- Room Category -->
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/room_category_card"
@@ -202,31 +184,28 @@
                         app:cardBackgroundColor="@color/white"
                         android:clickable="true"
                         android:focusable="true">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="16dp"
                             android:gravity="center">
-
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/home_24px"
                                 app:tint="#4CAF50"
                                 android:layout_marginBottom="8dp" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Room"
                                 android:textColor="#424242"
                                 android:textSize="14sp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
                                 android:fontFamily="sans-serif-medium" />
-
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
 
                     <!-- Shop Category -->
@@ -242,31 +221,28 @@
                         app:cardBackgroundColor="@color/white"
                         android:clickable="true"
                         android:focusable="true">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="16dp"
                             android:gravity="center">
-
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/shop"
                                 app:tint="#2196F3"
                                 android:layout_marginBottom="8dp" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Shop"
                                 android:textColor="#424242"
                                 android:textSize="14sp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
                                 android:fontFamily="sans-serif-medium" />
-
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
 
                     <!-- PG Category -->
@@ -282,33 +258,31 @@
                         app:cardBackgroundColor="@color/white"
                         android:clickable="true"
                         android:focusable="true">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="16dp"
                             android:gravity="center">
-
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/pg"
                                 app:tint="#FF9800"
                                 android:layout_marginBottom="8dp" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="PG"
                                 android:textColor="#424242"
                                 android:textSize="14sp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
                                 android:fontFamily="sans-serif-medium" />
-
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
 
+                    <!-- Godown Category -->
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/godown_category_card"
                         android:layout_width="0dp"
@@ -320,38 +294,379 @@
                         app:cardBackgroundColor="@color/white"
                         android:clickable="true"
                         android:focusable="true">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="16dp"
                             android:gravity="center">
-
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/godown"
                                 app:tint="#9C27B0"
                                 android:layout_marginBottom="8dp" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Godown"
                                 android:textColor="#424242"
                                 android:textSize="14sp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
                                 android:fontFamily="sans-serif-medium" />
-
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
-
                 </LinearLayout>
-
             </LinearLayout>
 
-            <!-- Post Property Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What are you looking for?"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Buy a Home -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/buy_home_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/home_24px"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_green"
+                            app:tint="#4CAF50"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Buy a Home"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Apartments, land, builder floors, villas and more"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Rent a Home -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/rent_home_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/key_24px"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_blue"
+                            app:tint="#2196F3"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rent a Home"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Apartments, builder floors, villas and more"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- PG and Co-living -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/pg_coliving_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/pg"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_orange"
+                            app:tint="#FF9800"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PG and Co-living"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Organised, owner and broker listed PGs"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Buy Plots/Land -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/buy_plots_land_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/terrain_24px"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_teal"
+                            app:tint="#009688"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Buy Plots/Land"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Residential Plots, Agricultral Farm lands, Inst. Lands and more"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Buy a Commercial Property -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/buy_commercial_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/business_24px"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_indigo"
+                            app:tint="#3F51B5"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Buy a commercial property"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Shops, offices, land, factories, warehouses and more"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Lease a Commercial Property -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/lease_commercial_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/store_24px"
+                            android:padding="10dp"
+                            android:background="@drawable/rounded_bg_light_pink"
+                            app:tint="#E91E63"
+                            android:layout_marginEnd="16dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lease a commercial property"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Shops, offices, land, factories, warehouses and more"
+                                android:textSize="13sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="#9E9E9E" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -362,20 +677,17 @@
                 app:strokeColor="@color/chip_stroke_color"
                 app:cardElevation="8dp"
                 app:cardBackgroundColor="@color/main_color">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="24dp"
                     android:gravity="center_vertical">
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -385,7 +697,6 @@
                             android:textStyle="bold"
                             android:fontFamily="sans-serif-medium"
                             android:layout_marginBottom="8dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -393,7 +704,6 @@
                             android:textSize="14sp"
                             android:textColor="@color/white"
                             android:layout_marginBottom="4dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -401,7 +711,6 @@
                             android:textSize="14sp"
                             android:textColor="@color/white"
                             android:layout_marginBottom="16dp" />
-
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnPostProperty"
                             android:layout_width="wrap_content"
@@ -416,9 +725,7 @@
                             app:icon="@drawable/add_home_24px"
                             app:iconSize="18dp"
                             app:iconTint="#FF6D00" />
-
                     </LinearLayout>
-
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
@@ -426,791 +733,614 @@
                         android:scaleType="fitCenter"
                         app:tint="@color/white"
                         android:layout_marginStart="16dp" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Featured Properties Section -->
+            <!-- Top Articles Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="20dp">
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Top Articles for Owners"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp" />
 
-                <!-- Section Header -->
+                <!-- Article 1 -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/article1_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_property_placeholder" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp"
+                            android:layout_gravity="center_vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="GST cut on building materials: Experts React"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium"
+                                android:maxLines="2"
+                                android:ellipsize="end" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sep 04, 2025"
+                                android:textSize="12sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Article 2 -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/article2_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/chip_stroke_color"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_property_placeholder" />
+                        </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp"
+                            android:layout_gravity="center_vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kolkata Tower Demolition: Impact on Real Estate Sector"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A1A"
+                                android:fontFamily="sans-serif-medium"
+                                android:maxLines="2"
+                                android:ellipsize="end" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sep 02, 2025"
+                                android:textSize="12sp"
+                                android:textColor="#757575"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- View All Articles Link -->
+                <TextView
+                    android:id="@+id/view_all_articles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Read realty news, guides &amp; articles →"
+                    android:textColor="@color/main_color"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?attr/selectableItemBackground" />
+            </LinearLayout>
+
+            <!-- Popular Cities Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore Popular Cities"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy or Rent properties in top cities"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Cities Grid -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cities_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:scrollbars="none" />
+
+                <!-- Manual Cities Layout (Alternative to RecyclerView) -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingEnd="20dp">
+                        <!-- Delhi/NCR -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/delhi_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/india_gate"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delhi / NCR"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Mumbai -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/mumbai_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/gateway_of_india"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mumbai"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Bangalore -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/bangalore_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/bangalore_palace"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Bangalore"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Hyderabad -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/hyderabad_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/charminar"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Hyderabad"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- Feedback Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/chip_stroke_color"
+                app:cardBackgroundColor="#E3F2FD">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Are you finding us helpful?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A1A"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your feedback will help us make Rentyfy the best."
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="24dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:id="@+id/feedback_positive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:layout_marginEnd="32dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:text="😊"
+                                android:textSize="32sp"
+                                android:gravity="center"
+                                android:layout_marginBottom="8dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes, Loving it"
+                                android:textSize="14sp"
+                                android:textColor="@color/main_color"
+                                android:fontFamily="sans-serif-medium" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/feedback_negative"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:text="😞"
+                                android:textSize="32sp"
+                                android:gravity="center"
+                                android:layout_marginBottom="8dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No, Not really"
+                                android:textSize="14sp"
+                                android:textColor="@color/main_color"
+                                android:fontFamily="sans-serif-medium" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Support Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="24dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:layout_marginBottom="16dp">
-
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/support_24px"
+                        app:tint="#424242"
+                        android:layout_marginEnd="8dp" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Featured Properties"
+                        android:text="Get support"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1A1A1A"
                         android:fontFamily="sans-serif-medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="View All"
-                        android:textColor="@color/main_color"
-                        android:textSize="14sp"
-                        android:fontFamily="sans-serif-medium"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="8dp" />
-
                 </LinearLayout>
 
-                <!-- Featured Property Card -->
+                <!-- Call Support -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/call_support_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="16dp"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
                     app:cardBackgroundColor="@color/white"
                     app:strokeColor="@color/chip_stroke_color"
                     app:strokeWidth="1dp"
                     android:clickable="true"
                     android:focusable="true">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <!-- Property Image -->
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="0dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_property_placeholder" />
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <!-- Property Details -->
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="8dp">
-
+                            android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Spacious 2BHK Apartment"
-                                android:textSize="16sp"
-                                android:textStyle="bold"
-                                android:textColor="#1A1A1A"
-                                android:fontFamily="sans-serif-medium"
+                                android:text="CALL ON TOLL FREE NUMBER"
+                                android:textSize="11sp"
+                                android:textColor="#757575"
+                                android:fontFamily="sans-serif"
                                 android:layout_marginBottom="4dp" />
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₹12,000/month"
+                                android:text="1800-41-99099"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#4CAF50"
-                                android:fontFamily="sans-serif-medium"
-                                android:layout_marginBottom="4dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sector 45, Gurgaon"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
-                                android:drawableStart="@drawable/location_on_24px"
-                                android:drawablePadding="4dp"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="8dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Advance: ₹24,000"
-                                android:textSize="14sp"
-                                android:textColor="#424242"
+                                android:textColor="#1A1A1A"
                                 android:fontFamily="sans-serif-medium" />
-
                         </LinearLayout>
-
-                        <!-- Property Badge -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/modern_category_badge"
-                            android:text="FOR SALE"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            android:fontFamily="sans-serif-medium"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="4dp"
-                            android:layout_gravity="top" />
-
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_call"
+                            android:padding="8dp"
+                            android:background="@drawable/rounded_blue_button_bg"
+                            app:tint="#1976D2" />
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Chat Support -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHAT WITH US"
+                        android:textSize="11sp"
+                        android:textColor="#757575"
+                        android:fontFamily="sans-serif"
+                        android:layout_marginBottom="12dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/whatsapp_support_card"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:gravity="center">
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_whatsapp"
+                                    app:tint="#25D366"
+                                    android:layout_marginEnd="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="WhatsApp"
+                                    android:textSize="14sp"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/chat_support_card"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:gravity="center">
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/chat_24px"
+                                    app:tint="#1976D2"
+                                    android:layout_marginEnd="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Chat"
+                                    android:textSize="14sp"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Request Callback Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRequestCallback"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Request a callback"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    app:backgroundTint="@color/main_color"
+                    app:icon="@drawable/ic_call"
+                    app:iconSize="20dp"
+                    app:iconTint="@color/white" />
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-    <!--<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#F8FAFC"-->
-    <!--android:fillViewport="true"-->
-    <!--android:overScrollMode="never"-->
-    <!--android:scrollbars="none">-->
-
-    <!--<LinearLayout-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="wrap_content"-->
-    <!--    android:orientation="vertical">-->
-
-    <!--    &lt;!&ndash; Modern Header with Gradient &ndash;&gt;-->
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="120dp"-->
-    <!--        android:background="@drawable/header_gradient"-->
-    <!--        android:paddingHorizontal="20dp"-->
-    <!--        android:paddingTop="40dp">-->
-
-    <!--        &lt;!&ndash; Menu Icon &ndash;&gt;-->
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:id="@+id/menuButton"-->
-    <!--            style="@style/Widget.Material3.Button.IconButton"-->
-    <!--            android:layout_width="48dp"-->
-    <!--            android:layout_height="48dp"-->
-    <!--            app:icon="@drawable/menu_icon"-->
-    <!--            app:iconSize="24dp"-->
-    <!--            app:iconTint="#FFFFFF"-->
-    <!--            app:backgroundTint="#33FFFFFF"-->
-    <!--            app:cornerRadius="24dp"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--        &lt;!&ndash; App Title &ndash;&gt;-->
-    <!--        <TextView-->
-    <!--            android:id="@+id/appTitle"-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:text="Quick Rentals"-->
-    <!--            android:textColor="#FFFFFF"-->
-    <!--            android:textSize="24sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            android:fontFamily="sans-serif-medium"-->
-    <!--            app:layout_constraintStart_toEndOf="@id/menuButton"-->
-    <!--            app:layout_constraintTop_toTopOf="@id/menuButton"-->
-    <!--            app:layout_constraintBottom_toBottomOf="@id/menuButton"-->
-    <!--            app:layout_constraintEnd_toStartOf="@id/notificationButton" />-->
-
-    <!--        &lt;!&ndash; Notification Icon &ndash;&gt;-->
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:id="@+id/notificationButton"-->
-    <!--            style="@style/Widget.Material3.Button.IconButton"-->
-    <!--            android:layout_width="48dp"-->
-    <!--            android:layout_height="48dp"-->
-    <!--            app:icon="@drawable/notifications_24px"-->
-    <!--            app:iconSize="24dp"-->
-    <!--            app:iconTint="#FFFFFF"-->
-    <!--            app:backgroundTint="#33FFFFFF"-->
-    <!--            app:cornerRadius="24dp"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    &lt;!&ndash; Search Card &ndash;&gt;-->
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="-30dp"-->
-    <!--        app:cardCornerRadius="24dp"-->
-    <!--        app:cardElevation="12dp"-->
-    <!--        app:cardBackgroundColor="#FFFFFF">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:orientation="vertical"-->
-    <!--            android:padding="24dp">-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="Find Your Dream Home"-->
-    <!--                android:textColor="#1F2937"-->
-    <!--                android:textSize="22sp"-->
-    <!--                android:textStyle="bold"-->
-    <!--                android:fontFamily="sans-serif-medium"-->
-    <!--                android:layout_marginBottom="20dp" />-->
-
-    <!--            &lt;!&ndash; Property Type Selector &ndash;&gt;-->
-    <!--            <com.google.android.material.textfield.TextInputLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginBottom="16dp"-->
-    <!--                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-    <!--                app:boxCornerRadiusTopStart="16dp"-->
-    <!--                app:boxCornerRadiusTopEnd="16dp"-->
-    <!--                app:boxCornerRadiusBottomStart="16dp"-->
-    <!--                app:boxCornerRadiusBottomEnd="16dp"-->
-    <!--                app:boxStrokeColor="#E5E7EB"-->
-    <!--                app:hintTextColor="#6B7280">-->
-
-    <!--                <AutoCompleteTextView-->
-    <!--                    android:id="@+id/propertyTypeDropdown"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:inputType="none"-->
-    <!--                    android:textColor="#1F2937"-->
-    <!--                    android:textSize="16sp"-->
-    <!--                    tools:text="Rent" />-->
-
-    <!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--            &lt;!&ndash; City Input &ndash;&gt;-->
-    <!--            <com.google.android.material.textfield.TextInputLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginBottom="20dp"-->
-    <!--                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"-->
-    <!--                app:boxCornerRadiusTopStart="16dp"-->
-    <!--                app:boxCornerRadiusTopEnd="16dp"-->
-    <!--                app:boxCornerRadiusBottomStart="16dp"-->
-    <!--                app:boxCornerRadiusBottomEnd="16dp"-->
-    <!--                app:boxStrokeColor="#E5E7EB"-->
-    <!--                app:hintTextColor="#6B7280"-->
-    <!--                app:endIconMode="custom"-->
-    <!--                app:endIconDrawable="@drawable/location_on_24px"-->
-    <!--                app:endIconTint="#6B7280"-->
-    <!--                android:hint="Enter city or area">-->
-
-    <!--                <com.google.android.material.textfield.TextInputEditText-->
-    <!--                    android:id="@+id/cityEditText"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:textColor="#1F2937"-->
-    <!--                    android:textSize="16sp" />-->
-
-    <!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--            &lt;!&ndash; Search Button &ndash;&gt;-->
-    <!--            <com.google.android.material.button.MaterialButton-->
-    <!--                android:id="@+id/btnSearchProperty"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="56dp"-->
-    <!--                android:text="Search Properties"-->
-    <!--                android:textSize="16sp"-->
-    <!--                android:textAllCaps="false"-->
-    <!--                android:fontFamily="sans-serif-medium"-->
-    <!--                app:backgroundTint="#6366F1"-->
-    <!--                app:cornerRadius="16dp"-->
-    <!--                app:icon="@drawable/ic_search"-->
-    <!--                app:iconSize="20dp"-->
-    <!--                app:iconGravity="textStart"-->
-    <!--                app:iconPadding="8dp" />-->
-
-    <!--        </LinearLayout>-->
-
-    <!--    </androidx.cardview.widget.CardView>-->
-
-    <!--    &lt;!&ndash; Property Categories Section &ndash;&gt;-->
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="vertical"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:paddingHorizontal="20dp">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Property Categories"-->
-    <!--            android:textColor="#1F2937"-->
-    <!--            android:textSize="20sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            android:fontFamily="sans-serif-medium"-->
-    <!--            android:layout_marginBottom="16dp" />-->
-
-    <!--        &lt;!&ndash; Categories Grid &ndash;&gt;-->
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:orientation="horizontal"-->
-    <!--            android:weightSum="4">-->
-
-    <!--            &lt;!&ndash; Room Category &ndash;&gt;-->
-    <!--            <androidx.cardview.widget.CardView-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_margin="6dp"-->
-    <!--                app:cardCornerRadius="20dp"-->
-    <!--                app:cardElevation="4dp"-->
-    <!--                app:cardBackgroundColor="#FFFFFF"-->
-    <!--                android:clickable="true"-->
-    <!--                android:focusable="true"-->
-    <!--                android:foreground="?attr/selectableItemBackground">-->
-
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:padding="16dp"-->
-    <!--                    android:gravity="center">-->
-
-    <!--                    <androidx.cardview.widget.CardView-->
-    <!--                        android:layout_width="56dp"-->
-    <!--                        android:layout_height="56dp"-->
-    <!--                        app:cardCornerRadius="28dp"-->
-    <!--                        app:cardBackgroundColor="#EEF2FF"-->
-    <!--                        app:cardElevation="0dp">-->
-
-    <!--                        <ImageView-->
-    <!--                            android:layout_width="28dp"-->
-    <!--                            android:layout_height="28dp"-->
-    <!--                            android:layout_gravity="center"-->
-    <!--                            android:src="@drawable/home_24px"-->
-    <!--                            app:tint="#6366F1" />-->
-
-    <!--                    </androidx.cardview.widget.CardView>-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="12dp"-->
-    <!--                        android:text="Room"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--            </androidx.cardview.widget.CardView>-->
-
-    <!--            &lt;!&ndash; Shop Category &ndash;&gt;-->
-    <!--            <androidx.cardview.widget.CardView-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_margin="6dp"-->
-    <!--                app:cardCornerRadius="20dp"-->
-    <!--                app:cardElevation="4dp"-->
-    <!--                app:cardBackgroundColor="#FFFFFF"-->
-    <!--                android:clickable="true"-->
-    <!--                android:focusable="true"-->
-    <!--                android:foreground="?attr/selectableItemBackground">-->
-
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:padding="16dp"-->
-    <!--                    android:gravity="center">-->
-
-    <!--                    <androidx.cardview.widget.CardView-->
-    <!--                        android:layout_width="56dp"-->
-    <!--                        android:layout_height="56dp"-->
-    <!--                        app:cardCornerRadius="28dp"-->
-    <!--                        app:cardBackgroundColor="#F0FDF4"-->
-    <!--                        app:cardElevation="0dp">-->
-
-    <!--                        <ImageView-->
-    <!--                            android:layout_width="28dp"-->
-    <!--                            android:layout_height="28dp"-->
-    <!--                            android:layout_gravity="center"-->
-    <!--                            android:src="@drawable/shop"-->
-    <!--                            app:tint="#10B981" />-->
-
-    <!--                    </androidx.cardview.widget.CardView>-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="12dp"-->
-    <!--                        android:text="Shop"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--            </androidx.cardview.widget.CardView>-->
-
-    <!--            &lt;!&ndash; PG Category &ndash;&gt;-->
-    <!--            <androidx.cardview.widget.CardView-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_margin="6dp"-->
-    <!--                app:cardCornerRadius="20dp"-->
-    <!--                app:cardElevation="4dp"-->
-    <!--                app:cardBackgroundColor="#FFFFFF"-->
-    <!--                android:clickable="true"-->
-    <!--                android:focusable="true"-->
-    <!--                android:foreground="?attr/selectableItemBackground">-->
-
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:padding="16dp"-->
-    <!--                    android:gravity="center">-->
-
-    <!--                    <androidx.cardview.widget.CardView-->
-    <!--                        android:layout_width="56dp"-->
-    <!--                        android:layout_height="56dp"-->
-    <!--                        app:cardCornerRadius="28dp"-->
-    <!--                        app:cardBackgroundColor="#FEF3F2"-->
-    <!--                        app:cardElevation="0dp">-->
-
-    <!--                        <ImageView-->
-    <!--                            android:layout_width="28dp"-->
-    <!--                            android:layout_height="28dp"-->
-    <!--                            android:layout_gravity="center"-->
-    <!--                            android:src="@drawable/pg"-->
-    <!--                            app:tint="#EF4444" />-->
-
-    <!--                    </androidx.cardview.widget.CardView>-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="12dp"-->
-    <!--                        android:text="PG"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--            </androidx.cardview.widget.CardView>-->
-
-    <!--            &lt;!&ndash; Godown Category &ndash;&gt;-->
-    <!--            <androidx.cardview.widget.CardView-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:layout_margin="6dp"-->
-    <!--                app:cardCornerRadius="20dp"-->
-    <!--                app:cardElevation="4dp"-->
-    <!--                app:cardBackgroundColor="#FFFFFF"-->
-    <!--                android:clickable="true"-->
-    <!--                android:focusable="true"-->
-    <!--                android:foreground="?attr/selectableItemBackground">-->
-
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:padding="16dp"-->
-    <!--                    android:gravity="center">-->
-
-    <!--                    <androidx.cardview.widget.CardView-->
-    <!--                        android:layout_width="56dp"-->
-    <!--                        android:layout_height="56dp"-->
-    <!--                        app:cardCornerRadius="28dp"-->
-    <!--                        app:cardBackgroundColor="#FFFBEB"-->
-    <!--                        app:cardElevation="0dp">-->
-
-    <!--                        <ImageView-->
-    <!--                            android:layout_width="28dp"-->
-    <!--                            android:layout_height="28dp"-->
-    <!--                            android:layout_gravity="center"-->
-    <!--                            android:src="@drawable/godown"-->
-    <!--                            app:tint="#F59E0B" />-->
-
-    <!--                    </androidx.cardview.widget.CardView>-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="12dp"-->
-    <!--                        android:text="Godown"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--            </androidx.cardview.widget.CardView>-->
-
-    <!--        </LinearLayout>-->
-
-    <!--    </LinearLayout>-->
-
-    <!--    &lt;!&ndash; Promotional Banner &ndash;&gt;-->
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        app:cardCornerRadius="24dp"-->
-    <!--        app:cardElevation="8dp"-->
-    <!--        app:cardBackgroundColor="#FF6B35">-->
-
-    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:padding="24dp">-->
-
-    <!--            &lt;!&ndash; Text Content &ndash;&gt;-->
-    <!--            <LinearLayout-->
-    <!--                android:id="@+id/bannerTextContent"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:orientation="vertical"-->
-    <!--                app:layout_constraintStart_toStartOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                app:layout_constraintEnd_toStartOf="@id/bannerImage"-->
-    <!--                android:layout_marginEnd="16dp">-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:text="Looking for Tenants?"-->
-    <!--                    android:textColor="#FFFFFF"-->
-    <!--                    android:textSize="20sp"-->
-    <!--                    android:textStyle="bold"-->
-    <!--                    android:fontFamily="sans-serif-medium" />-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="8dp"-->
-    <!--                    android:text="✨ Faster &amp; Verified Tenants"-->
-    <!--                    android:textColor="#FFFFFF"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    android:alpha="0.9" />-->
-
-    <!--                <TextView-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="4dp"-->
-    <!--                    android:text="🎯 Pay ZERO brokerage"-->
-    <!--                    android:textColor="#FFFFFF"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    android:alpha="0.9" />-->
-
-    <!--                <com.google.android.material.button.MaterialButton-->
-    <!--                    android:id="@+id/btnPostProperty"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="48dp"-->
-    <!--                    android:layout_marginTop="16dp"-->
-    <!--                    android:text="Post FREE Ad"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    android:textAllCaps="false"-->
-    <!--                    android:fontFamily="sans-serif-medium"-->
-    <!--                    app:backgroundTint="#FFFFFF"-->
-    <!--                    android:textColor="#FF6B35"-->
-    <!--                    app:cornerRadius="24dp" />-->
-
-    <!--            </LinearLayout>-->
-
-    <!--            &lt;!&ndash; House Image &ndash;&gt;-->
-    <!--            <ImageView-->
-    <!--                android:id="@+id/bannerImage"-->
-    <!--                android:layout_width="100dp"-->
-    <!--                android:layout_height="100dp"-->
-    <!--                android:src="@drawable/house"-->
-    <!--                android:scaleType="fitCenter"-->
-    <!--                app:tint="#FFFFFF"-->
-    <!--                android:alpha="0.8"-->
-    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
-
-    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--    </androidx.cardview.widget.CardView>-->
-
-    <!--    &lt;!&ndash; Featured Properties Section &ndash;&gt;-->
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="vertical"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:paddingHorizontal="20dp"-->
-    <!--        android:paddingBottom="24dp">-->
-
-    <!--        &lt;!&ndash; Section Header &ndash;&gt;-->
-    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginBottom="16dp">-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:text="Featured Properties"-->
-    <!--                android:textColor="#1F2937"-->
-    <!--                android:textSize="20sp"-->
-    <!--                android:textStyle="bold"-->
-    <!--                android:fontFamily="sans-serif-medium"-->
-    <!--                app:layout_constraintStart_toStartOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
-
-    <!--            <com.google.android.material.button.MaterialButton-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="40dp"-->
-    <!--                android:text="View All"-->
-    <!--                android:textSize="14sp"-->
-    <!--                android:textAllCaps="false"-->
-    <!--                android:fontFamily="sans-serif-medium"-->
-    <!--                style="@style/Widget.Material3.Button.TextButton"-->
-    <!--                android:textColor="#6366F1"-->
-    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
-
-    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--        &lt;!&ndash; Property Card &ndash;&gt;-->
-    <!--        <androidx.cardview.widget.CardView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:cardCornerRadius="20dp"-->
-    <!--            app:cardElevation="6dp"-->
-    <!--            app:cardBackgroundColor="#FFFFFF"-->
-    <!--            android:focusable="true"-->
-    <!--            app:cardPreventCornerOverlap="true"-->
-    <!--            app:cardUseCompatPadding="true"-->
-    <!--            android:clipToOutline="true"-->
-    <!--            android:foreground="?attr/selectableItemBackground">-->
-
-    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:padding="16dp">-->
-
-    <!--                &lt;!&ndash; Property Image &ndash;&gt;-->
-    <!--                <androidx.cardview.widget.CardView-->
-    <!--                    android:id="@+id/propertyImageCard"-->
-    <!--                    android:layout_width="120dp"-->
-    <!--                    android:layout_height="120dp"-->
-    <!--                    app:cardCornerRadius="16dp"-->
-    <!--                    app:cardElevation="0dp"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toTopOf="parent">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:layout_width="match_parent"-->
-    <!--                        android:layout_height="match_parent"-->
-    <!--                        android:scaleType="centerCrop"-->
-    <!--                        android:src="@drawable/ic_property_placeholder" />-->
-
-    <!--                </androidx.cardview.widget.CardView>-->
-
-    <!--                &lt;!&ndash; Property Info &ndash;&gt;-->
-    <!--                <LinearLayout-->
-    <!--                    android:id="@+id/propertyInfo"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:layout_marginStart="16dp"-->
-    <!--                    android:layout_marginEnd="8dp"-->
-    <!--                    app:layout_constraintStart_toEndOf="@id/propertyImageCard"-->
-    <!--                    app:layout_constraintTop_toTopOf="@id/propertyImageCard"-->
-    <!--                    app:layout_constraintEnd_toStartOf="@id/propertyTag">-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="Spacious 2BHK Apartment"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="16sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        android:fontFamily="sans-serif-medium"-->
-    <!--                        android:maxLines="2"-->
-    <!--                        android:ellipsize="end" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="8dp"-->
-    <!--                        android:text="₹12,000/month"-->
-    <!--                        android:textColor="#6366F1"-->
-    <!--                        android:textSize="18sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="4dp"-->
-    <!--                        android:text="📍 Sector 45, Gurgaon"-->
-    <!--                        android:textColor="#6B7280"-->
-    <!--                        android:textSize="14sp" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="8dp"-->
-    <!--                        android:text="Advance: ₹24,000"-->
-    <!--                        android:textColor="#1F2937"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:fontFamily="sans-serif-medium" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--                &lt;!&ndash; Property Tag &ndash;&gt;-->
-    <!--                <androidx.cardview.widget.CardView-->
-    <!--                    android:id="@+id/propertyTag"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    app:cardCornerRadius="12dp"-->
-    <!--                    app:cardBackgroundColor="#EF4444"-->
-    <!--                    app:cardElevation="0dp"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintTop_toTopOf="parent">-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="BUY-SELL"-->
-    <!--                        android:textColor="#FFFFFF"-->
-    <!--                        android:textSize="10sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        android:fontFamily="sans-serif-medium"-->
-    <!--                        android:paddingHorizontal="10dp"-->
-    <!--                        android:paddingVertical="6dp" />-->
-
-    <!--                </androidx.cardview.widget.CardView>-->
-
-    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--        </androidx.cardview.widget.CardView>-->
-
-    <!--    </LinearLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--</androidx.core.widget.NestedScrollView>-->

@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".Activities.LoginActivity">
 
-    <!-- Background Elements -->
     <View
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -28,7 +27,6 @@
         android:layout_marginBottom="200dp"
         android:layout_marginStart="-40dp" />
 
-    <!-- Main Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,9 +62,8 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/splash_background"
-                        android:scaleType="centerInside"
-                        app:tint="@color/main_color" />
+                        android:src="@drawable/ic_rentyfy_logo"
+                        android:scaleType="centerInside" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -171,17 +168,10 @@
                                     android:fontFamily="sans-serif-medium"
                                     android:layout_marginEnd="4dp" />
 
-                                <ImageView
-                                    android:layout_width="12dp"
-                                    android:layout_height="12dp"
-                                    android:src="@drawable/keyboard_arrow_down_24px"
-                                    app:tint="#757575" />
-
                             </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Phone Number Input -->
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/phoneInputLayout"
                             android:layout_width="0dp"
@@ -212,7 +202,6 @@
 
                     </LinearLayout>
 
-                    <!-- Continue Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/continueBtn"
                         android:layout_width="match_parent"
@@ -228,7 +217,6 @@
                         app:rippleColor="#FF8A65"
                         android:layout_marginBottom="32dp" />
 
-                    <!-- Divider -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -281,34 +269,14 @@
                             app:cornerRadius="16dp"
                             app:strokeColor="#E0E0E0"
                             app:strokeWidth="1dp"
-                            app:icon="@drawable/google"
-                            app:iconSize="20dp"
-                            app:iconGravity="textStart"
+                            app:icon="@drawable/ic_google"
                             app:iconTint="@null"
+                            app:iconGravity="textStart"
+                            app:iconSize="20dp"
                             android:backgroundTint="@color/white"
                             app:rippleColor="#F5F5F5"
                             android:layout_marginEnd="8dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/facebookSignInBtn"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:text="Facebook"
-                            android:textAllCaps="false"
-                            android:textSize="14sp"
-                            android:textColor="#424242"
-                            android:fontFamily="sans-serif-medium"
-                            app:cornerRadius="16dp"
-                            app:strokeColor="#E0E0E0"
-                            app:strokeWidth="1dp"
-                            app:icon="@drawable/facebook"
-                            app:iconSize="20dp"
-                            app:iconTint="@null"
-                            app:iconGravity="textStart"
-                            android:backgroundTint="@color/white"
-                            app:rippleColor="#F5F5F5"
-                            android:layout_marginStart="8dp" />
 
                     </LinearLayout>
 

@@ -1,7 +1,6 @@
 package com.example.citylinkrentals.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.citylinkrentals.R;
 import com.example.citylinkrentals.model.MessageDTO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int VIEW_TYPE_SENT = 1; // User sent message
+    private static final int VIEW_TYPE_RECEIVED = 2; // AI/System received message
 
     private List<MessageDTO> messages;
     private Context context;
@@ -29,34 +35,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public int getItemViewType(int position) {
-        return messages.get(position).isSent() ? 0 : 1;
+        MessageDTO message = messages.get(position);
+        return message.getIsSent() ? VIEW_TYPE_SENT : VIEW_TYPE_RECEIVED;
     }
 
     @NonNull
     @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
-        if (viewType == 0) {
-            view = LayoutInflater.from(context).inflate(R.layout.chat_send, parent, false);
-        } else { // Received message
-            view = LayoutInflater.from(context).inflate(R.layout.chat_receive, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        if (viewType == VIEW_TYPE_SENT) {
+            View view = inflater.inflate(R.layout.chat_send, parent, false);
+            return new SentMessageViewHolder(view);
+        } else {
+            View view = inflater.inflate(R.layout.chat_receive, parent, false);
+            return new ReceivedMessageViewHolder(view);
         }
-        return new MessageViewHolder(view, viewType);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MessageDTO message = messages.get(position);
-        if (holder.tvMessage != null) {
-            holder.tvMessage.setText(message.getContent());
-        } else {
-            Log.e("MessageAdapter", "tvMessage is null for position: " + position);
-        }
-        LocalDateTime dateTime = LocalDateTime.parse(message.getTimestamp());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-        String formattedTime = dateTime.format(formatter);
-        holder.tvTime.setText(formattedTime);
 
+        if (holder instanceof SentMessageViewHolder) {
+            ((SentMessageViewHolder) holder).bind(message);
+        } else if (holder instanceof ReceivedMessageViewHolder) {
+            ((ReceivedMessageViewHolder) holder).bind(message);
+        }
     }
 
     @Override
@@ -64,21 +69,84 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return messages.size();
     }
 
-    static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMessage, tvTime;
+    // ViewHolder for sent messages (user messages)
+    static class SentMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView tvMessage;
+        TextView tvTimestamp;
 
-        public MessageViewHolder(@NonNull View itemView, int viewType) {
+        SentMessageViewHolder(@NonNull View itemView) {
             super(itemView);
-            if (viewType == 0) { // Sent
-                tvMessage = itemView.findViewById(R.id.tvMessageSent);
-                tvTime = itemView.findViewById(R.id.tvTimeSent);
-            } else { // Received
-                tvMessage = itemView.findViewById(R.id.tvMessageReceived);
-                tvTime = itemView.findViewById(R.id.tvTimeReceived);
-            }
-            if (tvMessage == null || tvTime == null) {
-                Log.e("MessageAdapter", "View initialization failed for viewType: " + viewType);
+            tvMessage = itemView.findViewById(R.id.tvMessage);
+            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+        }
+
+        void bind(MessageDTO message) {
+            tvMessage.setText(message.getContent());
+
+            if (tvTimestamp != null) {
+                String formattedTime = formatTimestamp(message.getTimestamp());
+                tvTimestamp.setText(formattedTime);
             }
         }
+    }
+
+    // ViewHolder for received messages (AI/system messages)
+    static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
+        TextView tvMessage;
+        TextView tvTimestamp;
+
+        ReceivedMessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvMessage = itemView.findViewById(R.id.tvMessage);
+            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
+        }
+
+        void bind(MessageDTO message) {
+            tvMessage.setText(message.getContent());
+
+            if (tvTimestamp != null) {
+                String formattedTime = formatTimestamp(message.getTimestamp());
+                tvTimestamp.setText(formattedTime);
+            }
+        }
+    }
+
+    // Helper method to format timestamp
+    private static String formatTimestamp(String timestamp) {
+        if (timestamp == null) return "";
+
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                try {
+                    LocalDateTime dateTime = LocalDateTime.parse(timestamp);
+                    return dateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
+                } catch (Exception e) {
+                }
+            }
+
+            String[] formats = {
+                    "yyyy-MM-dd'T'HH:mm:ss",
+                    "yyyy-MM-dd HH:mm:ss",
+                    "dd/MM/yyyy HH:mm:ss",
+                    "MM/dd/yyyy HH:mm:ss"
+            };
+
+            for (String format : formats) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
+                    Date date = sdf.parse(timestamp);
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm a", Locale.getDefault());
+                    return outputFormat.format(date);
+                } catch (ParseException e) {
+                }
+            }
+
+            if (timestamp.length() >= 5) {
+                return timestamp.substring(0, 5);
+            }
+
+        } catch (Exception e) {
+        }
+        return "";
     }
 }

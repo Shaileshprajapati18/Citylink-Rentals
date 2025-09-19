@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:gravity="start"
-    android:orientation="vertical"
-    android:paddingHorizontal="8dp"
-    android:paddingVertical="4dp">
+    android:paddingVertical="4dp"
+    android:paddingHorizontal="8dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_chat_received"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp">
+        android:gravity="start">
 
-        <TextView
-            android:id="@+id/tvMessageReceived"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi! How are you?"
-            android:textColor="#212121"
-            android:textSize="16sp"
-            android:lineSpacingExtra="2dp" />
+            android:background="@drawable/bg_chat_received"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI response here"
+                android:textColor="#424242"
+                android:textSize="16sp"
+                android:lineSpacingExtra="2dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:31"
+            android:textColor="#9E9E9E"
+            android:textSize="11sp"
+            android:layout_marginStart="8dp" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/tvTimeReceived"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:paddingHorizontal="16dp"
-        android:layout_marginTop="6dp"
-        android:text="10:46 PM"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
-    </LinearLayout>
+
 </LinearLayout>

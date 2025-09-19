@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +18,7 @@ import com.example.citylinkrentals.Activities.PropertyDetailsActivity;
 import com.example.citylinkrentals.R;
 import com.example.citylinkrentals.model.Property;
 import com.example.citylinkrentals.model.TimeUtil;
+import com.example.citylinkrentals.model.FavoriteManager;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -26,15 +26,43 @@ import java.util.List;
 
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder> {
     private List<Property> properties;
+    private List<Property> originalProperties;
     private Context context;
+    private FavoriteManager favoriteManager;
+    private OnFavoriteChangeListener favoriteChangeListener;
+
+    public interface OnFavoriteChangeListener {
+        void onFavoriteChanged();
+    }
 
     public PropertyAdapter(Context context, List<Property> properties) {
         this.context = context;
-        this.properties = properties != null ? properties : new ArrayList<>();
+        this.properties = properties != null ? new ArrayList<>(properties) : new ArrayList<>();
+        this.originalProperties = properties != null ? new ArrayList<>(properties) : new ArrayList<>();
+        this.favoriteManager = FavoriteManager.getInstance(context);
+    }
+
+    public void setOnFavoriteChangeListener(OnFavoriteChangeListener listener) {
+        this.favoriteChangeListener = listener;
     }
 
     public void updateList(List<Property> newList) {
-        this.properties = newList != null ? newList : new ArrayList<>();
+        this.properties.clear();
+        this.originalProperties.clear();
+
+        if (newList != null) {
+            this.properties.addAll(newList);
+            this.originalProperties.addAll(newList);
+        }
+
+        notifyDataSetChanged();
+    }
+
+    public void updateFilteredList(List<Property> filteredList) {
+        this.properties.clear();
+        if (filteredList != null) {
+            this.properties.addAll(filteredList);
+        }
         notifyDataSetChanged();
     }
 
@@ -48,8 +76,10 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     @Override
     public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
-        Property property = properties.get(position);
-        holder.bind(property);
+        if (position < properties.size()) {
+            Property property = properties.get(position);
+            holder.bind(property);
+        }
     }
 
     @Override
@@ -58,9 +88,9 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     }
 
     class PropertyViewHolder extends RecyclerView.ViewHolder {
-        ImageView propertyImage;
+        ImageView propertyImage, favoriteIcon;
         TextView locationText, furnishingText, priceText, timeText, category, statusText;
-        MaterialButton whatsappButton, callButton,viewNumberButton;
+        MaterialButton whatsappButton, callButton, viewNumberButton;
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,23 +104,39 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             whatsappButton = itemView.findViewById(R.id.whatsapp_button);
             callButton = itemView.findViewById(R.id.call_button);
             statusText = itemView.findViewById(R.id.status_text);
+            favoriteIcon = itemView.findViewById(R.id.favorite_icon);
+
+            // Set favorite click listener
+            favoriteIcon.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && position < properties.size()) {
+                    Property property = properties.get(position);
+                    toggleFavorite(property, position);
+                }
+            });
 
             itemView.setOnClickListener(v -> {
-                Property property = properties.get(getAdapterPosition());
-                Intent intent = new Intent(context, PropertyDetailsActivity.class);
-                intent.putExtra("PROPERTY", property);
-                context.startActivity(intent);
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && position < properties.size()) {
+                    Property property = properties.get(position);
+                    Intent intent = new Intent(context, PropertyDetailsActivity.class);
+                    intent.putExtra("PROPERTY", property);
+                    context.startActivity(intent);
+                }
             });
         }
 
         public void bind(Property property) {
+            if (property == null) return;
 
+            // Load property image
             String imageUrl = null;
             if (property.getImagePaths() != null && !property.getImagePaths().isEmpty()) {
                 imageUrl = property.getImagePaths().get(0).replace("localhost", "192.168.153.1");
                 Glide.with(context)
                         .load(imageUrl)
                         .placeholder(R.drawable.ic_property_placeholder)
+                        .error(R.drawable.ic_property_placeholder)
                         .into(propertyImage);
             } else {
                 Glide.with(context)
@@ -98,16 +144,55 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                         .into(propertyImage);
             }
 
+            // Set property details
             locationText.setText((property.getLocality() != null && property.getCity() != null) ?
-                    property.getLocality() + ", " + property.getCity() : "N/A");
+                    property.getLocality() + ", " + property.getCity() : "Location not available");
+
             furnishingText.setText(property.getFurnishing() != null ? property.getFurnishing() : "N/A");
             statusText.setText(property.getAvailabilityStatus() != null ? property.getAvailabilityStatus() : "N/A");
+
             double price = property.getExpectedPrice() != null ? property.getExpectedPrice() : 0.0;
             priceText.setText(String.format("₹%.0f", price));
-            category.setText(property.getCategory() != null ? property.getCategory() : "N/A");
+
+            category.setText(property.getPropertyType() != null ? property.getPropertyType() :
+                    (property.getCategory() != null ? property.getCategory() : "N/A"));
 
             TimeUtil.setRelativeTime(timeText, property);
 
+            // Update favorite icon
+            updateFavoriteIcon(property);
+
+            // Button click listeners
+            setupButtonListeners(property);
+        }
+
+        private void updateFavoriteIcon(Property property) {
+            boolean isFavorite = favoriteManager.isFavorite(property);
+            favoriteIcon.setImageResource(isFavorite ?
+                    R.drawable.ic_heart : R.drawable.favorite_24px);
+            favoriteIcon.setColorFilter(isFavorite ?
+                    context.getResources().getColor(R.color.red_500) :
+                    context.getResources().getColor(R.color.gray_400));
+        }
+
+        private void toggleFavorite(Property property, int position) {
+            boolean wasAdded = favoriteManager.toggleFavorite(property);
+            boolean isNowFavorite = favoriteManager.isFavorite(property);
+
+            // Update UI
+            updateFavoriteIcon(property);
+
+            // Show message
+            String message = isNowFavorite ? "Added to favorites" : "Removed from favorites";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+            // Notify listener
+            if (favoriteChangeListener != null) {
+                favoriteChangeListener.onFavoriteChanged();
+            }
+        }
+
+        private void setupButtonListeners(Property property) {
             viewNumberButton.setOnClickListener(v -> {
                 String phone = property.getPhoneNumber();
                 if (phone != null && !phone.isEmpty()) {
@@ -120,9 +205,13 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             whatsappButton.setOnClickListener(v -> {
                 String phone = property.getPhoneNumber();
                 if (phone != null && !phone.isEmpty()) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("https://wa.me/" + phone));
-                    context.startActivity(intent);
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("https://wa.me/" + phone));
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(context, "WhatsApp not installed", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(context, "Phone number not available", Toast.LENGTH_SHORT).show();
                 }
@@ -133,9 +222,13 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                 if (phone != null && !phone.isEmpty()) {
                     String validPhone = phone.replaceAll("[^\\d+]", "");
                     if (!validPhone.isEmpty()) {
-                        Intent intent = new Intent(Intent.ACTION_DIAL);
-                        intent.setData(Uri.parse("tel:" + validPhone));
-                        context.startActivity(intent);
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            intent.setData(Uri.parse("tel:" + validPhone));
+                            context.startActivity(intent);
+                        } catch (Exception e) {
+                            Toast.makeText(context, "Cannot make phone call", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(context, "Invalid phone number", Toast.LENGTH_SHORT).show();
                     }

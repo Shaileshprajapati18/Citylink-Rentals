@@ -1,11 +1,16 @@
 package com.example.citylinkrentals.Activities;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ProfileFragment profileFragment = new ProfileFragment();
     private AiChatFragment aiChatFragment = new AiChatFragment();
     private Fragment currentFragment;
+    RelativeLayout main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.main_color));
+        window.setStatusBarColor(getResources().getColor(R.color.main_background_color));
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        main = findViewById(R.id.main);
+
+        handleKeyboardVisibility();
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -88,7 +97,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void switchFragment(Fragment fragment) {
+    private void handleKeyboardVisibility() {
+        main.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                main.getWindowVisibleDisplayFrame(r);
+                int screenHeight = main.getRootView().getHeight();
+                int keypadHeight = screenHeight - r.bottom;
+
+                if (keypadHeight > screenHeight * 0.15) {
+                    // Keyboard is visible
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else {
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+        private void switchFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (currentFragment != null && currentFragment != fragment) {

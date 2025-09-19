@@ -1,8 +1,9 @@
 package com.example.citylinkrentals.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class MessageDTO {
+public class MessageDTO implements Serializable {
     @SerializedName("firebaseUid")
     private String firebaseUid;
 
@@ -10,24 +11,50 @@ public class MessageDTO {
     private String content;
 
     @SerializedName("isSent")
-    private boolean isSent;
+    private Boolean isSent;
 
     @SerializedName("timestamp")
-    private String timestamp; // Changed from LocalDateTime to String
+    private String timestamp;
 
-    public MessageDTO(String content, boolean isSent, String timestamp) {
+    public MessageDTO() {
+        // Default constructor
+    }
+
+    public MessageDTO(String content, Boolean isSent, String timestamp) {
         this.content = content;
         this.isSent = isSent;
         this.timestamp = timestamp;
     }
 
-    public String getFirebaseUid() { return firebaseUid; }
-    public String getContent() { return content; }
-    public boolean isSent() { return isSent; }
-    public String getTimestamp() { return timestamp; }
+    public String getFirebaseUid() {
+        return firebaseUid;
+    }
 
-    public void setFirebaseUid(String firebaseUid) { this.firebaseUid = firebaseUid; }
-    public void setContent(String content) { this.content = content; }
-    public void setIsSent(boolean isSent) { this.isSent = isSent; }
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public String getContent() {
+        return content;
+    }
+
+    public Boolean getIsSent() {
+        return isSent;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setFirebaseUid(String firebaseUid) {
+        this.firebaseUid = firebaseUid;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setIsSent(Boolean isSent) {
+        this.isSent = isSent;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 }

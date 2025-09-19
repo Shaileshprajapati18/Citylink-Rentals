@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shimmer_duration="1000"
+    app:shimmer_auto_start="true"
+    app:shimmer_intensity="0.3">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:clipToOutline="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#E0E0E0" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="top"
+                    android:background="#E0E0E0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <!-- Verified Badge Placeholder -->
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="24dp"
+                            android:background="#CECDCD"
+                            android:layout_marginEnd="8dp" />
+
+                        <!-- Category Badge Placeholder -->
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="24dp"
+                            android:background="#CECDCD" />
+
+                    </LinearLayout>
+
+                    <!-- Favorite Icon Placeholder -->
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="#CECDCD"
+                        android:layout_marginEnd="8dp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <!-- Content Section Placeholder -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Price and Status Row Placeholder -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- Price Placeholder -->
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="24dp"
+                        android:background="#E0E0E0"
+                        android:layout_weight="1" />
+
+                    <!-- Status Placeholder -->
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="24dp"
+                        android:background="#E0E0E0" />
+
+                </LinearLayout>
+
+                <!-- Location Row Placeholder -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- Location Icon Placeholder -->
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="#E0E0E0" />
+
+                    <!-- Location Text Placeholder -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="16dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:background="#E0E0E0" />
+
+                    <!-- Furnishing Tag Placeholder -->
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="24dp"
+                        android:background="#E0E0E0" />
+
+                </LinearLayout>
+
+                <!-- Posted Info Row Placeholder -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Time Placeholder -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="16dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0" />
+
+                    <!-- Owner Placeholder -->
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="16dp"
+                        android:background="#E0E0E0" />
+
+                </LinearLayout>
+
+                <!-- Action Buttons Placeholder -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- View Number Button Placeholder -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0"
+                        android:layout_marginEnd="8dp" />
+
+                    <!-- WhatsApp Button Placeholder -->
+                    <View
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="#E0E0E0"
+                        android:layout_marginEnd="8dp" />
+
+                    <!-- Call Button Placeholder -->
+                    <View
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="#E0E0E0" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

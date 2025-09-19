@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background_color"
+    tools:context=".Activities.PrivacyPolicyActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_back_24px"
+                app:tint="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="Back"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Privacy Policy"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/back_arrow"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/share_button" />
+
+            <ImageView
+                android:id="@+id/share_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_share_24"
+                app:tint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="Share"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+
+            <!-- Header Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="16dp"
+                        android:src="@drawable/privacy_tip_24px"
+                        app:tint="@color/main_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/text_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tv_last_updated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Last Updated: December 2024"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We are committed to protecting your privacy and ensuring the security of your personal information. This policy explains how we collect, use, and safeguard your data."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="16sp"
+                        android:lineSpacingExtra="4dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Table of Contents with Expandable Sections -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Table of Contents"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/toc_information_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="1"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Information We Collect"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_information_collection"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/content_information_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="We collect information you provide directly to us and information we obtain automatically when you use our services."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Personal Information: Name, email address, phone number, and profile picture"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Property Information: Property details, photos, descriptions, and location data"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Communication Data: Messages, calls, and interactions with other users"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Device Information: Device type, operating system, IP address, and unique identifiers"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Usage Data: How you interact with our app, features used, and time spent"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Location Data: GPS coordinates when you enable location services"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Section 2: Information Use -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Header -->
+                        <LinearLayout
+                            android:id="@+id/toc_information_use"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="2"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="How We Use Information"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_information_use"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable Content -->
+                        <LinearLayout
+                            android:id="@+id/content_information_use"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="We use the collected information to provide, maintain, and improve our services."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Facilitate property transactions and connections between users"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Provide customer support and respond to your inquiries"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Send you important updates about your account and our services"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Improve our app functionality and user experience"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Prevent fraud and ensure the security of our platform"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Comply with legal obligations and enforce our terms of service"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Analyze usage patterns to enhance our services"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Section 3: Information Sharing -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Header -->
+                        <LinearLayout
+                            android:id="@+id/toc_information_sharing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="3"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Information Sharing"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_information_sharing"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable Content -->
+                        <LinearLayout
+                            android:id="@+id/content_information_sharing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="We may share your information in specific circumstances as described below."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• With Other Users: Property and contact details when you post listings"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Service Providers: Third-party companies that help us operate our services"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Legal Requirements: When required by law or to protect our rights"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Business Transfers: In connection with mergers, acquisitions, or asset sales"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Consent: When you explicitly agree to share information with third parties"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Safety: To prevent harm to users or the general public"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Section 4: Data Security -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/toc_data_security"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="4"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Data Security"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_data_security"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable Content -->
+                        <LinearLayout
+                            android:id="@+id/content_data_security"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="We implement appropriate security measures to protect your personal information."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Encryption: All data transmission is encrypted using industry-standard protocols"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Access Controls: Limited access to personal information on a need-to-know basis"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Regular Audits: Periodic security assessments and vulnerability testing"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Secure Storage: Data stored in secure, access-controlled environments"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Employee Training: Staff trained on data protection and privacy practices"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Incident Response: Procedures in place to handle potential security breaches"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Section 5: User Rights -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Header -->
+                        <LinearLayout
+                            android:id="@+id/toc_user_rights"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="5"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Your Rights"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_user_rights"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable Content -->
+                        <LinearLayout
+                            android:id="@+id/content_user_rights"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="You have certain rights regarding your personal information."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Access: Request a copy of the personal information we have about you"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Correction: Update or correct inaccurate personal information"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Deletion: Request deletion of your personal information"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Portability: Receive your data in a structured, machine-readable format"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Opt-out: Unsubscribe from marketing communications"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Account Control: Manage your privacy settings within the app"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/toc_contact_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:background="@drawable/help_option_background"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:text="6"
+                                android:gravity="center"
+                                android:background="@drawable/circle_number_bg"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Contact Information"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:id="@+id/arrow_contact_info"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/keyboard_arrow_down_24px"
+                                app:tint="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Expandable Content -->
+                        <LinearLayout
+                            android:id="@+id/content_contact_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="If you have questions about this Privacy Policy, please contact us."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Email: privacy@property.com"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Phone: +91 98765 43210"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Address: 123 Tech Park, Bangalore, India 560001"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Support Hours: Monday to Friday, 9:00 AM - 6:00 PM IST"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Response Time: We aim to respond within 48 hours"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Data Protection Officer: Available for privacy-related concerns"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/main_color">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Questions About Privacy?"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="If you have any questions about this Privacy Policy, please don't hesitate to contact us."
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"
+                        android:alpha="0.9" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_contact_support"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Support"
+                        android:textColor="@color/main_color"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white"
+                        app:cornerRadius="12dp"
+                        app:icon="@drawable/support_24px"
+                        app:iconTint="@color/main_color"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
