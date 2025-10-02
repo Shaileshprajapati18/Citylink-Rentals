@@ -85,30 +85,28 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     private ChipGroup categoryChipGroup, propertyKindChipGroup, propertyTypeChipGroup;
     private ChipGroup bhkTypeChipGroup, furnishingChipGroup, parkingChipGroup, availabilityChipGroup;
     private ChipGroup propertyFacingChipGroup, ownershipChipGroup, powerBackupChipGroup;
-    private ChipGroup hiddenPropertyTypes;
+    private ChipGroup hiddenPropertyTypes, pgTargetChipGroup; // Added P.G target chip group
     private ImageView backArrow;
-    private LinearLayout btnSelectImages, helpWhatsappLayout;
+    private LinearLayout btnSelectImages, helpWhatsappLayout, pgTargetSection; // Added P.G target section
     private MaterialButton saveAndSubmitButton;
     private Chip chipMoreOptions;
     private RecyclerView imagesRecyclerView;
     private Toolbar toolbar;
     private TextView toolbarTitle;
 
-    // Image handling
     private List<Uri> newImageUris = new ArrayList<>();
     private List<String> existingImageUrls = new ArrayList<>();
     private List<String> imagesToRemove = new ArrayList<>();
     private PropertyImagesAdapter imagePreviewAdapter;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
-    // Property data
     private boolean isEditMode = false;
     private Property propertyToEdit;
 
-    // Selected values
     private String selectedCategory, selectedPropertyKind, selectedPropertyType;
     private String selectedBhkType, selectedFurnishing, selectedParking, selectedAvailability;
     private String selectedPropertyFacing, selectedOwnership, selectedPowerBackup;
+    private String selectedPgTarget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +152,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         if (isEditMode) {
             propertyToEdit = (Property) getIntent().getSerializableExtra("PROPERTY_TO_EDIT");
             if (propertyToEdit != null) {
-                // Clear any previously selected new images
                 newImageUris.clear();
                 imagesToRemove.clear();
                 setupEditMode();
@@ -162,9 +159,7 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         }
     }
 
-
     private void setupEditMode() {
-        // Update UI for edit mode
         if (toolbarTitle != null) {
             toolbarTitle.setText("Edit Property");
         }
@@ -172,12 +167,19 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
 
         populateFieldsFromProperty(propertyToEdit);
 
-        // Load existing images - use LinkedHashSet to remove duplicates while preserving order
+        // FIXED: Clear all lists first before populating
+        existingImageUrls.clear();
+        newImageUris.clear();
+        imagesToRemove.clear();
+
+        // FIXED: Use LinkedHashSet to remove duplicates while preserving order
         if (propertyToEdit.getImagePaths() != null && !propertyToEdit.getImagePaths().isEmpty()) {
+            // Create a new list from LinkedHashSet to ensure no duplicates
             existingImageUrls = new ArrayList<>(new LinkedHashSet<>(propertyToEdit.getImagePaths()));
             showImagePreview();
         }
     }
+
 
     private void populateFieldsFromProperty(Property property) {
         // Populate category
@@ -210,13 +212,10 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         }
 
         phoneNumberInput.setText(property.getPhoneNumber());
-
-        // Populate location
         cityInput.setText(property.getCity());
         localityInput.setText(property.getLocality());
         apartmentNameInput.setText(property.getSocietyName());
 
-        // Populate BHK and room details
         if (property.getBhkType() != null) {
             Chip bhkChip = findChipByText(property.getBhkType(), bhkTypeChipGroup);
             if (bhkChip != null) {
@@ -230,7 +229,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         kitchenInput.setText(String.valueOf(property.getKitchen()));
         hallInput.setText(String.valueOf(property.getHole()));
 
-        // Populate area and price
         if (property.getAreaUnit() != null) {
             String[] areaParts = property.getAreaUnit().split(" ", 2);
             if (areaParts.length >= 1) {
@@ -243,7 +241,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
 
         expectedPriceInput.setText(String.valueOf(property.getExpectedPrice()));
 
-        // Populate features
         if (property.getFurnishing() != null) {
             Chip furnishingChip = findChipByText(property.getFurnishing(), furnishingChipGroup);
             if (furnishingChip != null) {
@@ -286,7 +283,14 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             }
         }
 
-        // Populate additional details
+        // NEW: Populate P.G target if property is P.G
+        if (property.getPgTarget() != null && !property.getPgTarget().isEmpty()) {
+            Chip pgTargetChip = findChipByText(property.getPgTarget(), pgTargetChipGroup);
+            if (pgTargetChip != null) {
+                pgTargetChipGroup.check(pgTargetChip.getId());
+            }
+        }
+
         totalFloorsInput.setText(String.valueOf(property.getTotalFloor()));
 
         if (property.getFlooringType() != null) {
@@ -339,6 +343,9 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         powerBackupChipGroup = findViewById(R.id.power_backup_chip_group);
         hiddenPropertyTypes = findViewById(R.id.hidden_property_types);
 
+        // NEW: P.G target chip group
+        pgTargetChipGroup = findViewById(R.id.pg_target_chip_group);
+
         // UI Elements
         backArrow = findViewById(R.id.back_arrow);
         btnSelectImages = findViewById(R.id.btnSelectImages);
@@ -346,6 +353,9 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         saveAndSubmitButton = findViewById(R.id.save_and_submit_button);
         chipMoreOptions = findViewById(R.id.chip_more_options);
         imagesRecyclerView = findViewById(R.id.images_recycler_view);
+
+        // NEW: P.G target section
+        pgTargetSection = findViewById(R.id.pg_target_section);
     }
 
     private void setupDropdowns() {
@@ -456,9 +466,17 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
                 selectedPowerBackup = selectedChip.getText().toString();
             }
         });
+
+        // NEW: P.G Target selection
+        pgTargetChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (!checkedIds.isEmpty()) {
+                Chip selectedChip = findViewById(checkedIds.get(0));
+                selectedPgTarget = selectedChip.getText().toString();
+            }
+        });
     }
 
-    // Update field visibility based on property type
+    // UPDATED: Update field visibility based on property type
     private void updateFieldVisibilityBasedOnPropertyType(String propertyType) {
         // Find UI elements
         View bhkSection = findViewById(R.id.bhk_section);
@@ -478,7 +496,19 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         if (kitchenSection != null) kitchenSection.setVisibility(View.VISIBLE);
         if (hallSection != null) hallSection.setVisibility(View.VISIBLE);
 
-        // Apply property type specific rules
+        if (pgTargetSection != null) {
+            if (propertyType.toLowerCase().equals("p.g") || propertyType.toLowerCase().equals("paying guest")) {
+                pgTargetSection.setVisibility(View.VISIBLE);
+            } else {
+                pgTargetSection.setVisibility(View.GONE);
+
+                if (pgTargetChipGroup != null) {
+                    pgTargetChipGroup.clearCheck();
+                }
+                selectedPgTarget = null;
+            }
+        }
+
         switch (propertyType.toLowerCase()) {
             case "office":
                 if (bhkSection != null) bhkSection.setVisibility(View.GONE);
@@ -593,41 +623,33 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        // Clear previous new images when selecting new ones in edit mode
-                        if (isEditMode) {
-                            newImageUris.clear();
-                        }
 
+                        // Handle multiple images selection
                         if (result.getData().getClipData() != null) {
-                            // Multiple images selected
                             int count = result.getData().getClipData().getItemCount();
-                            for (int i = 0; i < count && getTotalImageCount() < MAX_IMAGES; i++) {
+                            for (int i = 0; i < count; i++) {
                                 Uri imageUri = result.getData().getClipData().getItemAt(i).getUri();
-                                // Check for duplicates before adding
-                                if (!newImageUris.contains(imageUri)) {
+                                // Check for duplicates AND max limit
+                                if (!newImageUris.contains(imageUri) && getTotalImageCount() < MAX_IMAGES) {
                                     newImageUris.add(imageUri);
                                 }
                             }
-                        } else if (result.getData().getData() != null) {
-                            // Single image selected
+                        }
+                        // Handle single image selection
+                        else if (result.getData().getData() != null) {
                             Uri imageUri = result.getData().getData();
-                            // Check for duplicates before adding
+                            // Check for duplicates AND max limit
                             if (!newImageUris.contains(imageUri) && getTotalImageCount() < MAX_IMAGES) {
                                 newImageUris.add(imageUri);
                             }
                         }
 
+                        // Show message if limit exceeded
                         if (getTotalImageCount() > MAX_IMAGES) {
-                            // Trim excess images
-                            while (getTotalImageCount() > MAX_IMAGES) {
-                                if (!newImageUris.isEmpty()) {
-                                    newImageUris.remove(newImageUris.size() - 1);
-                                } else {
-                                    existingImageUrls.remove(existingImageUrls.size() - 1);
-                                }
-                            }
                             Toast.makeText(this, "Maximum " + MAX_IMAGES + " images allowed", Toast.LENGTH_SHORT).show();
                         }
+
+                        // Update the preview
                         showImagePreview();
                     }
                 }
@@ -635,9 +657,15 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     }
 
     private int getTotalImageCount() {
-        return existingImageUrls.size() + newImageUris.size();
+        // Count only images that are NOT marked for removal
+        int existingCount = 0;
+        for (String url : existingImageUrls) {
+            if (!imagesToRemove.contains(url)) {
+                existingCount++;
+            }
+        }
+        return existingCount + newImageUris.size();
     }
-
     private void setupRecyclerView() {
         imagePreviewAdapter = new PropertyImagesAdapter(new ArrayList<>(), true, this);
         imagesRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -689,20 +717,22 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     private void showImagePreview() {
         List<Object> allImages = new ArrayList<>();
 
-        // In edit mode, only show existing images that are not marked for removal
         if (isEditMode) {
+            // Only add existing images that are NOT marked for removal
             for (String imageUrl : existingImageUrls) {
                 if (!imagesToRemove.contains(imageUrl)) {
                     allImages.add(imageUrl);
                 }
             }
         } else {
+            // In create mode, just add all existing images
             allImages.addAll(existingImageUrls);
         }
 
-        // Add new images
+        // Add new images (no duplicates check needed as we prevent duplicates during selection)
         allImages.addAll(newImageUris);
 
+        // Update RecyclerView visibility and adapter
         if (!allImages.isEmpty()) {
             imagesRecyclerView.setVisibility(VISIBLE);
             imagePreviewAdapter.updateImages(allImages);
@@ -714,18 +744,17 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     @Override
     public void onImageRemoved(Object image, int position) {
         if (image instanceof String) {
-            // Existing image URL
+            // Existing image URL - remove from display and mark for deletion
             String imageUrl = (String) image;
-            // Remove from existingImageUrls
-            existingImageUrls.remove(imageUrl);
-            // Add to imagesToRemove
+
+            // Only add to imagesToRemove if it's not already there
             if (!imagesToRemove.contains(imageUrl)) {
                 imagesToRemove.add(imageUrl);
             }
+
         } else if (image instanceof Uri) {
-            // New image URI
+
             Uri imageUri = (Uri) image;
-            // Remove from newImageUris
             newImageUris.remove(imageUri);
         }
 
@@ -742,11 +771,9 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             return;
         }
 
-        // Show progress
         saveAndSubmitButton.setEnabled(false);
         saveAndSubmitButton.setText(isEditMode ? "Updating..." : "Submitting...");
 
-        // Create property request
         PropertyListRequest property = createPropertyRequest();
 
         if (isEditMode) {
@@ -759,13 +786,11 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     private PropertyListRequest createPropertyRequest() {
         PropertyListRequest property = new PropertyListRequest();
 
-        // Set Firebase UID
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             property.setFirebaseUid(user.getUid());
         }
 
-        // Set property details
         property.setCategory(selectedCategory);
         property.setPropertyKind(selectedPropertyKind);
         property.setPropertyType(selectedPropertyType);
@@ -780,10 +805,10 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         property.setKitchen(parseInteger(kitchenInput.getText().toString()));
         property.setHole(parseInteger(hallInput.getText().toString()));
 
-        // Set area with unit
         String area = carpetAreaInput.getText().toString().trim();
         String unit = areaUnitSpinner.getText().toString().trim();
         property.setAreaUnit(area + " " + unit);
+        property.setPropertyStatus("PENDING");
 
         property.setFurnishing(selectedFurnishing);
         property.setTotalFloor(parseInteger(totalFloorsInput.getText().toString()));
@@ -796,11 +821,11 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         property.setOwnership(selectedOwnership);
         property.setPowerBackup(selectedPowerBackup);
 
-        // Set timestamp
+        property.setPgTarget(selectedPgTarget);
+
         String createdAt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(new Date());
         property.setCreateAt(createdAt);
 
-        // Set images to remove (for edit mode)
         if (isEditMode && !imagesToRemove.isEmpty()) {
             property.setImagesToRemove(imagesToRemove);
         }
@@ -808,9 +833,7 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         return property;
     }
 
-
     private void createProperty(PropertyListRequest property) {
-        // Prepare image parts
         List<MultipartBody.Part> imageParts = new ArrayList<>();
         for (Uri uri : newImageUris) {
             try {
@@ -826,10 +849,8 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             }
         }
 
-        // Create request body
         RequestBody propertyBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(property));
 
-        // Make API call
         ApiService apiService = RetrofitClient.getApiService();
         Call<PropertyListResponse> call = apiService.createProperty(propertyBody, imageParts);
         call.enqueue(new Callback<PropertyListResponse>() {
@@ -863,8 +884,9 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     }
 
     private void updateProperty(PropertyListRequest property) {
-        // Prepare image parts
         List<MultipartBody.Part> imageParts = new ArrayList<>();
+
+        // Only add NEW images to the multipart request
         for (Uri uri : newImageUris) {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -879,10 +901,8 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             }
         }
 
-        // Create request body
         RequestBody propertyBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(property));
 
-        // Make API call
         ApiService apiService = RetrofitClient.getApiService();
         Call<ResponseDTO> call = apiService.updateProperty(propertyToEdit.getId(), propertyBody, imageParts);
         call.enqueue(new Callback<ResponseDTO>() {
@@ -894,7 +914,7 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
                     if (responseDTO.getStatusCode() == 0) {
                         Toast.makeText(PostPropertyActivity.this, "Property updated successfully!", Toast.LENGTH_LONG).show();
 
-                        // Clear image lists after successful update
+                        // FIXED: Clear all lists after successful update
                         newImageUris.clear();
                         existingImageUrls.clear();
                         imagesToRemove.clear();
@@ -923,8 +943,8 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
         saveAndSubmitButton.setText(isEditMode ? "Update Property" : "Save and Submit");
     }
 
+    // UPDATED: Validation with P.G target validation
     private boolean validateInputs() {
-        // Required field validations
         if (selectedCategory == null || selectedCategory.isEmpty()) {
             Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();
             return false;
@@ -970,10 +990,16 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             return false;
         }
 
-        // Conditional validations based on property type
         String propertyType = selectedPropertyType.toLowerCase();
 
-        // For non-plot properties, validate furnishing
+        // NEW: P.G target validation
+        if (propertyType.equals("p.g") || propertyType.equals("paying guest")) {
+            if (selectedPgTarget == null || selectedPgTarget.isEmpty()) {
+                Toast.makeText(this, "Please select P.G target audience", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
         if (!propertyType.equals("plot / land") && !propertyType.equals("plot") && !propertyType.equals("land")) {
             if (selectedFurnishing == null || selectedFurnishing.isEmpty()) {
                 Toast.makeText(this, "Please select furnishing type", Toast.LENGTH_SHORT).show();
@@ -981,7 +1007,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             }
         }
 
-        // For properties that have parking (not plots), validate parking
         if (!propertyType.equals("plot / land") && !propertyType.equals("plot") && !propertyType.equals("land")) {
             if (selectedParking == null || selectedParking.isEmpty()) {
                 Toast.makeText(this, "Please select parking availability", Toast.LENGTH_SHORT).show();
@@ -994,7 +1019,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             return false;
         }
 
-        // For properties that have facing (not plots), validate facing
         if (!propertyType.equals("plot / land") && !propertyType.equals("plot") && !propertyType.equals("land")) {
             if (selectedPropertyFacing == null || selectedPropertyFacing.isEmpty()) {
                 Toast.makeText(this, "Please select property facing", Toast.LENGTH_SHORT).show();
@@ -1007,7 +1031,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             return false;
         }
 
-        // For properties that have power backup (not plots), validate power backup
         if (!propertyType.equals("plot / land") && !propertyType.equals("plot") && !propertyType.equals("land")) {
             if (selectedPowerBackup == null || selectedPowerBackup.isEmpty()) {
                 Toast.makeText(this, "Please select power backup option", Toast.LENGTH_SHORT).show();
@@ -1015,7 +1038,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
             }
         }
 
-        // For residential properties that have BHK, validate BHK selection
         if (propertyType.equals("apartment") || propertyType.equals("flat") ||
                 propertyType.equals("room") || propertyType.equals("independent house") ||
                 propertyType.equals("p.g") || propertyType.equals("paying guest")) {
@@ -1114,7 +1136,6 @@ public class PostPropertyActivity extends AppCompatActivity implements PropertyI
     @Override
     public void onBackPressed() {
         if (isEditMode) {
-            // If in edit mode, show confirmation dialog before exiting
             new AlertDialog.Builder(this)
                     .setTitle("Discard Changes?")
                     .setMessage("Are you sure you want to discard all changes?")

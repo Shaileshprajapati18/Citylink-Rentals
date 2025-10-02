@@ -40,13 +40,13 @@
         android:visibility="gone" />
 
     <!-- Add this retry button where appropriate -->
-    <Button
-        android:id="@+id/btnRetryApiCall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Retry"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+<!--    <Button-->
+<!--        android:id="@+id/btnRetryApiCall"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Retry"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:visibility="gone" />-->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,8 +79,10 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ivProfilePicture"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/stroke_color"
                         android:src="@drawable/profile_image_placeholder"
                         android:contentDescription="Profile picture"
                         android:layout_marginEnd="6dp" />
@@ -97,6 +99,7 @@
                             android:layout_height="wrap_content"
                             android:text="username"
                             android:textColor="#1A1A1A"
+                            android:layout_marginTop="5dp"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -115,9 +118,10 @@
                                 android:textSize="12sp"
                                 app:chipIcon="@drawable/ic_verified"
                                 app:chipIconTint="@color/white"
+                                app:chipIconSize="20dp"
                                 app:chipBackgroundColor="#4CAF50"
                                 app:chipCornerRadius="16dp"
-                                app:chipMinHeight="28dp"
+                                app:chipMinHeight="24dp"
                                 android:textColor="@color/white" />
                         </LinearLayout>
 

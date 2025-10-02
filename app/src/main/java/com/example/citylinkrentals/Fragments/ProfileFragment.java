@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,7 +85,7 @@ public class ProfileFragment extends Fragment {
     private Chip chipVerified;
     private MaterialButton btnLogout;
     private ProgressBar progressBar;
-    private Button btnRetryApiCall;
+//    private Button btnRetryApiCall;
     ImageView btnEditProfile;
     LinearLayout helpAction, privacyAction, favoriteAction;
     private FirebaseUser currentUser;
@@ -122,7 +123,7 @@ public class ProfileFragment extends Fragment {
         chipVerified = view.findViewById(R.id.chipVerified);
         btnLogout = view.findViewById(R.id.btnLogout);
         progressBar = view.findViewById(R.id.progressBar);
-        btnRetryApiCall = view.findViewById(R.id.btnRetryApiCall);
+//        btnRetryApiCall = view.findViewById(R.id.btnRetryApiCall);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         helpAction = view.findViewById(R.id.helpAction);
         privacyAction = view.findViewById(R.id.privacyAction);
@@ -455,10 +456,14 @@ public class ProfileFragment extends Fragment {
 
     private void setupClickListeners() {
         btnLogout.setOnClickListener(v -> showLogoutConfirmation());
-        btnRetryApiCall.setOnClickListener(v -> {
-            btnRetryApiCall.setVisibility(View.GONE);
-            loadUserDataFromAPI();
-        });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadUserDataFromAPI();
+
+            }
+        },10000);
 
         helpAction.setOnClickListener(v -> {
             startActivity(new Intent(requireActivity(), HelpAndSupportActivity.class));
@@ -576,7 +581,6 @@ public class ProfileFragment extends Fragment {
                 Log.e(TAG, "API call failed: " + t.getMessage());
                 Log.e(TAG, "API call failed, stack trace: ", t);
                 showError("Network error: " + t.getMessage());
-                btnRetryApiCall.setVisibility(View.VISIBLE);
             }
         });
     }

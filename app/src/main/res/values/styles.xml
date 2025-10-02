@@ -14,6 +14,10 @@
 
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+
     <style name="BottomNavTextActive" parent="@style/TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>

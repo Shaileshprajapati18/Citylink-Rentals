@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,28 +8,29 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image_preview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_property_placeholder" />
+            android:contentDescription="Property image" />
 
         <ImageView
             android:id="@+id/delete_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_gravity="top|end"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_margin="4dp"
-            android:background="@drawable/rounded_white_bg"
+            android:background="@drawable/circle_background"
             android:padding="4dp"
             android:src="@drawable/ic_close"
-            app:tint="#F44336" />
+            android:contentDescription="Remove image"
+            app:tint="@android:color/white" />
 
-    </FrameLayout>
-
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

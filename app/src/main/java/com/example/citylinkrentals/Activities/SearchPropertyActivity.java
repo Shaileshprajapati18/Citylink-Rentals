@@ -260,6 +260,11 @@ public class SearchPropertyActivity extends AppCompatActivity {
         });
     }
 
+    private boolean isPropertyActive(Property property) {
+        return property.getPropertyStatus() == null ||
+                !property.getPropertyStatus().equalsIgnoreCase("pending");
+    }
+
     private void fetchProperties() {
         showShimmerLoading(true);
         swipeRefreshLayout.setRefreshing(true);
@@ -275,7 +280,14 @@ public class SearchPropertyActivity extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null) {
                     originalPropertyList.clear();
-                    originalPropertyList.addAll(response.body().getMessageBody());
+
+                    // Filter out pending properties
+                    for (Property property : response.body().getMessageBody()) {
+                        if (isPropertyActive(property)) {
+                            originalPropertyList.add(property);
+                        }
+                    }
+
                     applyFilters();
                 } else {
                     showEmptyState(true);
@@ -302,12 +314,13 @@ public class SearchPropertyActivity extends AppCompatActivity {
         });
     }
 
+    // Modify the applyFilters() method
     private void applyFilters() {
         List<Property> tempList = new ArrayList<>();
 
-        // First apply category filter
+        // First apply category filter and status filter
         for (Property property : originalPropertyList) {
-            if (matchesCurrentFilter(property)) {
+            if (matchesCurrentFilter(property) && isPropertyActive(property)) {
                 tempList.add(property);
             }
         }
@@ -410,20 +423,22 @@ public class SearchPropertyActivity extends AppCompatActivity {
         chipGodown.setText(String.format("Godown (%d)", godownCount));
     }
 
+    // Modify the count methods to exclude pending properties
     private int getResidentialPropertiesCount() {
         int count = 0;
         for (Property property : originalPropertyList) {
-            if (isResidentialProperty(property)) {
+            if (isResidentialProperty(property) && isPropertyActive(property)) {
                 count++;
             }
         }
         return count;
     }
 
+
     private int getCommercialPropertiesCount() {
         int count = 0;
         for (Property property : originalPropertyList) {
-            if (isCommercialProperty(property)) {
+            if (isCommercialProperty(property) && isPropertyActive(property)) {
                 count++;
             }
         }
@@ -434,7 +449,8 @@ public class SearchPropertyActivity extends AppCompatActivity {
         int count = 0;
         for (Property property : originalPropertyList) {
             if (property.getPropertyType() != null &&
-                    property.getPropertyType().equalsIgnoreCase(type)) {
+                    property.getPropertyType().equalsIgnoreCase(type) &&
+                    isPropertyActive(property)) {
                 count++;
             }
         }
@@ -442,15 +458,13 @@ public class SearchPropertyActivity extends AppCompatActivity {
     }
 
     private void clearAllFilters() {
-        // Reset search query
+
         currentSearchQuery = "";
         searchBar.setText("");
 
-        // Reset filter to "All"
         currentFilter = "All";
         chipGroup.check(R.id.chip_all);
 
-        // Apply filters (which will show all properties)
         applyFilters();
 
         Toast.makeText(this, "All filters cleared", Toast.LENGTH_SHORT).show();

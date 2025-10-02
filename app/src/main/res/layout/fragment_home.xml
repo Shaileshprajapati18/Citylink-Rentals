@@ -1,74 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/main"
-    android:background="@color/main_background_color">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:elevation="0dp">
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:paddingHorizontal="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:id="@+id/menu_item"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/menu_icon"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Menu" />
-                <TextView
-                    android:id="@+id/titleText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/app_name"
-                    android:textSize="22sp"
-                    android:textColor="#1A1A1A"
-                    android:fontFamily="sans-serif-medium"
-                    android:textStyle="bold"
-                    android:layout_marginStart="16dp" />
-                <ImageView
-                    android:id="@+id/notification_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/notifications_24px"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="2dp"
-                    app:tint="#757575"
-                    android:layout_marginEnd="8dp" />
-            </LinearLayout>
-        </com.google.android.material.appbar.MaterialToolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+    android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <!-- Main Content -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:scrollbars="none"
-        android:id="@+id/nestedScrollView"
-        android:fillViewport="true">
+        android:background="@color/main_background_color">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingHorizontal="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/app_name"
+                        android:textSize="20sp"
+                        android:textColor="#1A1A1A"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/gifImageView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            app:tint="@color/main_color"
+                            android:src="@drawable/ic_my_location"
+                            android:contentDescription="Location" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:scrollbars="none"
+            android:id="@+id/nestedScrollView"
+            android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="24dp">
 
-            <!-- Search Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
                 app:strokeColor="@color/chip_stroke_color"
@@ -108,28 +124,33 @@
                             android:textColor="#424242"
                             android:fontFamily="sans-serif"
                             android:inputType="none"
+                            android:textColorHint="@color/textHint"
                             android:focusable="false" />
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginBottom="16dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         app:boxCornerRadiusBottomStart="12dp"
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:startIconDrawable="@drawable/location_on_24px"
                         app:startIconTint="#757575">
-                        <com.google.android.material.textfield.TextInputEditText
+
+                        <AutoCompleteTextView
                             android:id="@+id/cityEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter city"
                             android:textSize="16sp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
                             android:textColor="#424242"
                             android:fontFamily="sans-serif"
+                            android:textColorHint="@color/textHint"
                             android:inputType="text"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -171,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="4">
-                    <!-- Room Category -->
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/room_category_card"
                         android:layout_width="0dp"
@@ -742,6 +763,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingHorizontal="20dp"
+                android:visibility="gone"
                 android:layout_marginBottom="24dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -879,7 +901,6 @@
                     android:background="?attr/selectableItemBackground" />
             </LinearLayout>
 
-            <!-- Popular Cities Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -912,7 +933,6 @@
                     android:orientation="horizontal"
                     android:scrollbars="none" />
 
-                <!-- Manual Cities Layout (Alternative to RecyclerView) -->
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -922,9 +942,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingEnd="20dp">
-                        <!-- Delhi/NCR -->
+                        <!-- Indore -->
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/delhi_city_card"
+                            android:id="@+id/indore_city_card"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="12dp"
@@ -939,17 +959,16 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:gravity="center">
-
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="60dp"
                                     android:layout_height="60dp"
-                                    android:src="@drawable/india_gate"
+                                    android:src="@drawable/indore_image"
                                     android:scaleType="centerCrop"
                                     android:layout_marginBottom="8dp" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Delhi / NCR"
+                                    android:text="Indore"
                                     android:textSize="12sp"
                                     android:textStyle="bold"
                                     android:textColor="#424242"
@@ -958,9 +977,9 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Mumbai -->
+                        <!-- Gwalior -->
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/mumbai_city_card"
+                            android:id="@+id/gwalior_city_card"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="12dp"
@@ -978,13 +997,13 @@
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="60dp"
                                     android:layout_height="60dp"
-                                    android:src="@drawable/gateway_of_india"
+                                    android:src="@drawable/gwalior_image"
                                     android:scaleType="centerCrop"
                                     android:layout_marginBottom="8dp" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Mumbai"
+                                    android:text="Gwalior"
                                     android:textSize="12sp"
                                     android:textStyle="bold"
                                     android:textColor="#424242"
@@ -993,9 +1012,9 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Bangalore -->
+                        <!-- Bhopal -->
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/bangalore_city_card"
+                            android:id="@+id/bhopal_city_card"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="12dp"
@@ -1013,13 +1032,13 @@
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="60dp"
                                     android:layout_height="60dp"
-                                    android:src="@drawable/bangalore_palace"
+                                    android:src="@drawable/bhopal_image"
                                     android:scaleType="centerCrop"
                                     android:layout_marginBottom="8dp" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Bangalore"
+                                    android:text="Bhopal"
                                     android:textSize="12sp"
                                     android:textStyle="bold"
                                     android:textColor="#424242"
@@ -1028,9 +1047,9 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Hyderabad -->
+                        <!-- Ujjain -->
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/hyderabad_city_card"
+                            android:id="@+id/ujjain_city_card"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="12dp"
@@ -1048,13 +1067,153 @@
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="60dp"
                                     android:layout_height="60dp"
-                                    android:src="@drawable/charminar"
+                                    android:src="@drawable/ujjain_image"
                                     android:scaleType="centerCrop"
                                     android:layout_marginBottom="8dp" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Hyderabad"
+                                    android:text="Ujjain"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Sagar -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/sagar_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/sagar_image"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sagar"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Dewas -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/dewas_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/dewas_image"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dewas"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Satna -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/satna_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/satna_image"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Satna"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#424242"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textAlignment="center" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Ratlam -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ratlam_city_card"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:strokeColor="@color/chip_stroke_color"
+                            app:strokeWidth="1dp"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/ratlam_image"
+                                    android:scaleType="centerCrop"
+                                    android:layout_marginBottom="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ratlam"
                                     android:textSize="12sp"
                                     android:textStyle="bold"
                                     android:textColor="#424242"
@@ -1064,6 +1223,7 @@
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
                 </HorizontalScrollView>
+
             </LinearLayout>
 
             <!-- Feedback Section -->
@@ -1343,4 +1503,21 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemShapeFillColor="@color/nav_item_bg"
+        app:itemShapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        android:background="@color/white" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

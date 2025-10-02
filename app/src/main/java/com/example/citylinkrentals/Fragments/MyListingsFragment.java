@@ -128,17 +128,18 @@ public class MyListingsFragment extends Fragment implements MyPropertiesAdapter.
 
                 if (response.isSuccessful() && response.body() != null) {
                     ResponseDTO propertyResponse = response.body();
+                    List<Property> properties = propertyResponse.getMessageBody();
 
-                    if (propertyResponse.getMessageBody() != null && !propertyResponse.getStatusMessage().isEmpty()) {
-                        updatePropertiesList(propertyResponse.getMessageBody());
+                    if (properties != null && !properties.isEmpty()) {
+                        updatePropertiesList(properties);
                         showPropertiesState();
                     } else {
-                        showEmptyState();
+                        showEmptyState(); // Show "Property not found" when list is empty
                     }
                 } else {
                     String error = "Failed to load properties";
                     if (response.code() == 404) {
-                        showEmptyState();
+                        showEmptyState(); // Show "Property not found" for 404 response
                     } else {
                         try {
                             if (response.errorBody() != null) {
@@ -160,7 +161,6 @@ public class MyListingsFragment extends Fragment implements MyPropertiesAdapter.
             }
         });
     }
-
     private void updatePropertiesList(List<Property> properties) {
         propertiesList.clear();
         propertiesList.addAll(properties);
@@ -195,17 +195,19 @@ public class MyListingsFragment extends Fragment implements MyPropertiesAdapter.
                     ResponseDTO responseDTO = response.body();
 
                     if (responseDTO.getStatusCode() == 0) {
-
+                        // Remove the property from the local list
                         propertiesList.remove(position);
-                        propertiesAdapter.notifyItemRemoved(position);
-                        propertiesAdapter.notifyItemRangeChanged(position, propertiesList.size());
+                        // Notify the adapter (fallback to notifyDataSetChanged)
+                        propertiesAdapter.notifyDataSetChanged();
 
-                        Toast.makeText(getContext(), "Property deleted successfully", Toast.LENGTH_SHORT).show();
-
+                        // Update UI state based on list size
                         if (propertiesList.isEmpty()) {
                             showEmptyState();
+                        } else {
+                            showPropertiesState();
                         }
-                        loadUserProperties();
+
+                        Toast.makeText(getContext(), "Property deleted successfully", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getContext(), responseDTO.getStatusMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -220,8 +222,8 @@ public class MyListingsFragment extends Fragment implements MyPropertiesAdapter.
                 Toast.makeText(getContext(), "Network error while deleting", Toast.LENGTH_SHORT).show();
             }
         });
-}
-
+    }
+    
     private void openAddPropertyActivity() {
         Intent intent = new Intent(getContext(), PostPropertyActivity.class);
         startActivity(intent);

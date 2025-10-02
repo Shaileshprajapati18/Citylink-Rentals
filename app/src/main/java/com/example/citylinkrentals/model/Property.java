@@ -19,6 +19,9 @@ public class Property implements Serializable {
     @SerializedName("propertyKind")
     private String propertyKind;
 
+    @SerializedName("pgTarget")
+    private String pgTarget;
+
     @SerializedName("propertyType")
     private String propertyType;
 
@@ -90,6 +93,9 @@ public class Property implements Serializable {
 
     @SerializedName("createdAt")
     private String createdAt;
+
+    @SerializedName("propertyStatus")
+    private String propertyStatus;
 
     public Long getId() {
         return id;
@@ -313,5 +319,21 @@ public class Property implements Serializable {
 
     public void setKitchen(Integer kitchen) {
         this.kitchen = kitchen;
+    }
+
+    public String getPgTarget() {
+        return pgTarget;
+    }
+
+    public void setPgTarget(String pgTarget) {
+        this.pgTarget = pgTarget;
+    }
+
+    public String getPropertyStatus() {
+        return propertyStatus;
+    }
+
+    public void setPropertyStatus(String propertyStatus) {
+        this.propertyStatus = propertyStatus;
     }
 }

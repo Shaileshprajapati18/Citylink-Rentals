@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.citylinkrentals.Fragments.HomeFragment;
 import com.example.citylinkrentals.R;
 import com.example.citylinkrentals.model.User;
 import com.example.citylinkrentals.model.UserProfileResponse;
@@ -55,6 +56,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager()
+                .findFragmentByTag("home");
+        if (homeFragment != null) {
+            homeFragment.refreshUserProfile();
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

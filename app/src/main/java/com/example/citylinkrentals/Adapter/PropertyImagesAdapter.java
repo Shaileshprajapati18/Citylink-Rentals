@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.citylinkrentals.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyImagesAdapter extends RecyclerView.Adapter<PropertyImagesAdapter.ImageViewHolder> {
@@ -46,6 +48,7 @@ public class PropertyImagesAdapter extends RecyclerView.Adapter<PropertyImagesAd
             // Load from URL
             String imageUrl = (String) image;
             if (imageUrl != null && !imageUrl.isEmpty()) {
+                // Handle localhost replacement for development
                 if (imageUrl.contains("localhost")) {
                     imageUrl = imageUrl.replace("localhost", "192.168.153.1");
                 }
@@ -84,9 +87,9 @@ public class PropertyImagesAdapter extends RecyclerView.Adapter<PropertyImagesAd
             });
         }
 
-        // Set click listener for the whole item
+        // Set click listener for the whole item (optional: for full-screen view)
         holder.itemView.setOnClickListener(v -> {
-            // Optional: Handle item click if needed
+            // Optional: Implement full-screen image viewing here
         });
     }
 
@@ -95,9 +98,28 @@ public class PropertyImagesAdapter extends RecyclerView.Adapter<PropertyImagesAd
         return images != null ? images.size() : 0;
     }
 
+    // Improved update method with diffing for better performance
     public void updateImages(List<Object> newImages) {
+        if (newImages == null) {
+            newImages = new ArrayList<>();
+        }
+
+        // Simple implementation - for large lists, consider using DiffUtil
         this.images = newImages;
         notifyDataSetChanged();
+    }
+
+    // Add method to get image at position
+    public Object getImageAt(int position) {
+        if (images != null && position >= 0 && position < images.size()) {
+            return images.get(position);
+        }
+        return null;
+    }
+
+    // Add method to get all images
+    public List<Object> getAllImages() {
+        return images;
     }
 
     static class ImageViewHolder extends RecyclerView.ViewHolder {

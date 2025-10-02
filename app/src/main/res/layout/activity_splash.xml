@@ -21,12 +21,21 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- House Icon -->
-        <ImageView
-            android:id="@+id/house_icon"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:tint="@color/white"
-            android:src="@drawable/ic_rentyfy_logo"/>
+            app:cardCornerRadius="20dp"
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="@color/white">
+
+            <ImageView
+                android:id="@+id/house_icon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_rentyfy_logo"
+                android:scaleType="centerInside" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tagline"

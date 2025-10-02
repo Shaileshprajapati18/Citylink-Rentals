@@ -1,6 +1,7 @@
 package com.example.citylinkrentals.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
         private ImageView propertyImage, favoriteBadge;
         private TextView statusBadge, imageCount, propertyTitle, propertyLocation;
         private TextView propertyPrice, bedroomsCount, bathroomsCount, areaSize;
-        private TextView postedDate, categoryBadge;
+        private TextView postedDate, categoryBadge,pgTarget;
         private MaterialButton viewButton, editButton, deleteButton;
 
         public PropertyViewHolder(@NonNull View itemView) {
@@ -88,6 +89,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             viewButton = itemView.findViewById(R.id.view_button);
             editButton = itemView.findViewById(R.id.edit_button);
             deleteButton = itemView.findViewById(R.id.delete_button);
+            pgTarget = itemView.findViewById(R.id.txtPgTarget);
         }
 
         public void bind(Property property, int position) {
@@ -130,21 +132,22 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
         private void setStatusBadge(Property property) {
 
-            String status = "ACTIVE";
-            int backgroundColor = context.getResources().getColor(R.color.status_active);
-
-            if (property.getAvailabilityStatus() != null) {
-                if ("Under construction".equalsIgnoreCase(property.getAvailabilityStatus())) {
-                    status = "CONSTRUCTION";
-                    backgroundColor = context.getResources().getColor(R.color.status_construction);
-                } else if ("Ready to move".equalsIgnoreCase(property.getAvailabilityStatus())) {
-                    status = "AVAILABLE";
-                    backgroundColor = context.getResources().getColor(R.color.status_available);
+            if (property.getPropertyStatus() != null) {
+                if ("PENDING".equalsIgnoreCase(property.getPropertyStatus())) {
+                    statusBadge.setText("PENDING");
+                    statusBadge.setBackground(context.getResources().getDrawable(R.drawable.pending_badge_bg));
+                } else if ("ACTIVE".equalsIgnoreCase(property.getPropertyStatus())) {
+                    statusBadge.setText("ACTIVE");
+                    statusBadge.setBackground(context.getResources().getDrawable(R.drawable.verified_badge_bg));
+                } else {
+                    statusBadge.setText("PENDING");
+                    statusBadge.setBackground(context.getResources().getDrawable(R.drawable.pending_badge_bg));
                 }
+            } else {
+                // Handle null status by setting default to PENDING
+                statusBadge.setText("PENDING");
+                statusBadge.setBackground(context.getResources().getDrawable(R.drawable.pending_badge_bg));
             }
-
-            statusBadge.setText(status);
-            statusBadge.setBackgroundColor(backgroundColor);
         }
 
         private void setImageCount(Property property) {
@@ -177,6 +180,15 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
                 location = "Location not specified";
             }
             propertyLocation.setText(location);
+
+            if (property.getPgTarget() != null && !property.getPgTarget().isEmpty()) {
+                pgTarget.setVisibility(View.VISIBLE);
+
+                pgTarget.setText(property.getPgTarget());
+
+            } else {
+                pgTarget.setVisibility(View.GONE);
+            }
 
             if (property.getExpectedPrice() != null && property.getExpectedPrice() > 0) {
                 propertyPrice.setText(String.format("₹%.0f", property.getExpectedPrice()));

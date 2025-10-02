@@ -123,7 +123,6 @@
                         android:fontFamily="sans-serif"
                         android:layout_marginBottom="20dp" />
 
-                    <!-- Phone Input with Country Code -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

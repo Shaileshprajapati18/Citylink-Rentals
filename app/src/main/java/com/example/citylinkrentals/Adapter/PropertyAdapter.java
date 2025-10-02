@@ -20,6 +20,7 @@ import com.example.citylinkrentals.model.Property;
 import com.example.citylinkrentals.model.TimeUtil;
 import com.example.citylinkrentals.model.FavoriteManager;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +48,20 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     }
 
     public void updateList(List<Property> newList) {
-        this.properties.clear();
         this.originalProperties.clear();
 
         if (newList != null) {
-            this.properties.addAll(newList);
-            this.originalProperties.addAll(newList);
+            // Filter out properties with status "pending"
+            for (Property property : newList) {
+                if (property.getPropertyStatus() == null ||
+                        !property.getPropertyStatus().equalsIgnoreCase("pending")) {
+                    this.originalProperties.add(property);
+                }
+            }
+            this.properties.clear();
+            this.properties.addAll(originalProperties);
+        } else {
+            this.properties.clear();
         }
 
         notifyDataSetChanged();
@@ -61,7 +70,13 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     public void updateFilteredList(List<Property> filteredList) {
         this.properties.clear();
         if (filteredList != null) {
-            this.properties.addAll(filteredList);
+            // Filter out properties with status "pending"
+            for (Property property : filteredList) {
+                if (property.getPropertyStatus() == null ||
+                        !property.getPropertyStatus().equalsIgnoreCase("pending")) {
+                    this.properties.add(property);
+                }
+            }
         }
         notifyDataSetChanged();
     }
@@ -89,7 +104,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     class PropertyViewHolder extends RecyclerView.ViewHolder {
         ImageView propertyImage, favoriteIcon;
-        TextView locationText, furnishingText, priceText, timeText, category, statusText;
+        TextView locationText, furnishingText, priceText, timeText, category, statusText,pgTarget;
         MaterialButton whatsappButton, callButton, viewNumberButton;
 
         public PropertyViewHolder(@NonNull View itemView) {
@@ -105,8 +120,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             callButton = itemView.findViewById(R.id.call_button);
             statusText = itemView.findViewById(R.id.status_text);
             favoriteIcon = itemView.findViewById(R.id.favorite_icon);
+            pgTarget = itemView.findViewById(R.id.txtPgTarget);
 
-            // Set favorite click listener
             favoriteIcon.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION && position < properties.size()) {
@@ -144,13 +159,19 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
                         .into(propertyImage);
             }
 
-            // Set property details
             locationText.setText((property.getLocality() != null && property.getCity() != null) ?
                     property.getLocality() + ", " + property.getCity() : "Location not available");
 
             furnishingText.setText(property.getFurnishing() != null ? property.getFurnishing() : "N/A");
             statusText.setText(property.getAvailabilityStatus() != null ? property.getAvailabilityStatus() : "N/A");
+            if (property.getPgTarget() != null && !property.getPgTarget().isEmpty()) {
+                pgTarget.setVisibility(View.VISIBLE);
 
+                pgTarget.setText(property.getPgTarget());
+
+            } else {
+                pgTarget.setVisibility(View.GONE);
+            }
             double price = property.getExpectedPrice() != null ? property.getExpectedPrice() : 0.0;
             priceText.setText(String.format("₹%.0f", price));
 
@@ -159,7 +180,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
             TimeUtil.setRelativeTime(timeText, property);
 
-            // Update favorite icon
             updateFavoriteIcon(property);
 
             // Button click listeners

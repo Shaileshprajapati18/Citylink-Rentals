@@ -6,7 +6,7 @@
         android:title="Home" />
     <item
         android:id="@+id/navigation_Listing"
-        android:icon="@drawable/history_24px"
+        android:icon="@drawable/business_24px"
         android:title="My Properties" />
     <item
         android:id="@+id/navigation_aiChat"

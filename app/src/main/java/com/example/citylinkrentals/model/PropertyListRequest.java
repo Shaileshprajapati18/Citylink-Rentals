@@ -19,6 +19,9 @@ public class PropertyListRequest implements Serializable {
     @SerializedName("propertyType")
     private String propertyType;
 
+    @SerializedName("pgTarget")
+    private String pgTarget;
+
     @SerializedName("phoneNumber")
     private String phoneNumber;
 
@@ -85,11 +88,21 @@ public class PropertyListRequest implements Serializable {
     @SerializedName("createdAt")
     private String createAt;
 
-    private List<String> imagesToRemove;
+    @SerializedName("propertyStatus")
+    private String propertyStatus;
 
+    private List<String> imagesToRemove;
 
     public String getFirebaseUid() {
         return firebaseUid;
+    }
+
+    public String getPgTarget() {
+        return pgTarget;
+    }
+
+    public void setPgTarget(String pgTarget) {
+        this.pgTarget = pgTarget;
     }
 
     public void setFirebaseUid(String firebaseUid) {
@@ -302,5 +315,13 @@ public class PropertyListRequest implements Serializable {
 
     public void setImagesToRemove(List<String> imagesToRemove) {
         this.imagesToRemove = imagesToRemove;
+    }
+
+    public String getPropertyStatus() {
+        return propertyStatus;
+    }
+
+    public void setPropertyStatus(String propertyStatus) {
+        this.propertyStatus = propertyStatus;
     }
 }

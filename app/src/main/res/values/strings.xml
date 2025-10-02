@@ -69,8 +69,10 @@
     <string name="notifications">Notifications</string>
     <string name="change_password">Change Password</string>
     <string name="delete_account">Delete Account</string>
-
-    <!-- App Info -->
     <string name="app_version">Version 1.0.0</string>
+    <string name="google_map_api_key">AIzaSyAmwS-Z5ZxVmigqPC4Y24yB2NPA6yaQTF8</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 
 </resources>
